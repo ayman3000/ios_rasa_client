@@ -2,6 +2,7 @@ import SwiftUI
 
 struct Messenger: View {
     @State private var message = ""
+    @State private var recognizedText = ""
     @State private var messages: [Message] = [
         Message(text: "Hey, how's it going?", isBot: true),
         Message(text: "Not bad, you?", isBot: false),
@@ -15,7 +16,7 @@ struct Messenger: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
                         ForEach(messages, id: \.self) { message in
-                            ChatMessageView(message: message)
+                            ChatMessageView2(message: message)
                         }
                     }
                     .padding(.horizontal)
@@ -39,13 +40,14 @@ struct Messenger: View {
                     .cornerRadius(25)
                     .overlay(
                         HStack {
-                            Button(action: {
-                                // show voice input
-                            }) {
-                                Image(systemName: "mic")
-                                    .foregroundColor(.gray)
-                                    .padding(.leading, 10)
-                            }
+//                            Button(action: {
+//                                // show voice input
+//                            }) {
+//                                Image(systemName: "mic")
+//                                    .foregroundColor(.gray)
+//                                    .padding(.leading, 10)
+//                            }
+                            SpeechRecognitionButton(recognizedText: $recognizedText)
                             Spacer()
                             Button(action: {
                                 // send message
@@ -86,7 +88,7 @@ struct Messenger: View {
     }
 }
 
-struct ChatMessageView: View {
+struct ChatMessageView2: View {
     let message: Message
 
     var body: some View {

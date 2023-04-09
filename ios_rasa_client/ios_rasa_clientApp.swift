@@ -13,7 +13,7 @@ struct ios_rasa_clientApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ChatView()
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
