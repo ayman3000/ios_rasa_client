@@ -13,6 +13,7 @@ import AVFoundation
 class RasaChatViewModel:  ObservableObject {
     @Published var messages: [ChatMessage] = []
     @Published var isConnected = false
+    @Published var isTTSEnabled: Bool = true
 
     private var manager: SocketManager!
     private var socket: SocketIOClient!
@@ -56,11 +57,13 @@ class RasaChatViewModel:  ObservableObject {
         socket.on("bot_uttered") { data, _ in
             if let response = data.first as? [String: Any], let message = response["text"] as? String {
                 DispatchQueue.main.async {
-                    self.messages.append(ChatMessage(sender: .bot, text: message))
+                    self.messages.append(ChatMessage(sender: .bot, text: message, buttons: <#T##[String]?#>))
 //                    self.speak(text: message)
                     
                     
                 }
+                guard self.isTTSEnabled else { return }
+                
                 self.speaker.speak(message, language: "en-US")
             }
         }

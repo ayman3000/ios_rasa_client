@@ -11,6 +11,7 @@ struct ChatMessage: Identifiable, Equatable {
     let id = UUID()
     let sender: Sender
     let text: String
+    let buttons: [String]?
 }
 
 enum Sender {
