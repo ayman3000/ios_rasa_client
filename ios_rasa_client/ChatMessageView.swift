@@ -29,34 +29,32 @@ struct ChatMessageView: View {
                     .font(.system(size: 18))
                     .foregroundColor(.blue)
                     .padding(.trailing, 6)
-//                Text(message.text)
-//                    .padding(12)
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
+
                 VStack(alignment: .leading, spacing: 4) {
                     Text(message.text)
-                    .padding(12)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-     
-                         if let buttons = message.buttons {
-                             HStack {
-                                 ForEach(buttons, id: \.self) { buttonTitle in
-                                     Button(action: {
-                                         viewModel.sendMessage(buttonTitle)
-                                     }) {
-                                         Text(buttonTitle)
-                                             .padding(.horizontal, 12)
-                                             .padding(.vertical, 8)
-                                             .background(Color.blue)
-                                             .foregroundColor(.white)
-                                             .cornerRadius(4)
-                                     }
-                                 }
-                             }
-                         }
+                                        .padding(10)
+                                        .background(Color.gray.opacity(0.1))
+                                        .cornerRadius(10)
+                                        .foregroundColor(.black)
+
+                    if let buttons = message.buttons, !buttons.isEmpty {
+                        VStack(alignment: .leading, spacing: 4) {
+                            ForEach(buttons, id: \.self) { button in
+                                Button(action: {
+//                                    onButtonTap?(button.payload)
+                                    viewModel.sendMessage(text: button.payload)
+                                }) {
+                                    Text(button.title)
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundColor(Color.white)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 6)
+                                    .background(Color.blue)
+                                    .cornerRadius(20)
+                                }
+                            }
+                        }
+                    }
                      }
                 Spacer()
             }
@@ -68,25 +66,26 @@ struct ChatMessageView: View {
 
 struct ChatMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatMessageView(message: ChatMessage(sender: .user, text: "hi"))
+        ChatMessageView(message: ChatMessage(sender: .user, text: "hi", buttons: nil), viewModel: RasaChatViewModel())
+        
     }
 }
-
-extension String {
-    func htmlLinks() -> [(text: String, url: String)] {
-        let regexPattern = "<a href=\"([^\"]+)\">([^<]+)<\\/a>"
-        guard let regex = try? NSRegularExpression(pattern: regexPattern, options: []) else {
-            return []
-        }
-
-        let nsString = self as NSString
-        let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: nsString.length))
-
-        return matches.map { match in
-            let url = nsString.substring(with: match.range(at: 1))
-            let text = nsString.substring(with: match.range(at: 2))
-            return (text: text, url: url)
+    
+    extension String {
+        func htmlLinks() -> [(text: String, url: String)] {
+            let regexPattern = "<a href=\"([^\"]+)\">([^<]+)<\\/a>"
+            guard let regex = try? NSRegularExpression(pattern: regexPattern, options: []) else {
+                return []
+            }
+            
+            let nsString = self as NSString
+            let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: nsString.length))
+            
+            return matches.map { match in
+                let url = nsString.substring(with: match.range(at: 1))
+                let text = nsString.substring(with: match.range(at: 2))
+                return (text: text, url: url)
+            }
         }
     }
-}
 

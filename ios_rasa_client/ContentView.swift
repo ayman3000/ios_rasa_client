@@ -11,7 +11,7 @@ struct ContentView: View {
                 ScrollViewReader { proxy in
                     LazyVStack {
                         ForEach(rasaChatViewModel.messages) { message in
-                            ChatMessageView(message: message)
+                            ChatMessageView(message: ChatMessage(sender: message.sender, text: message.text, buttons: message.buttons), viewModel: rasaChatViewModel)
                         }
                     }
                     .onChange(of: rasaChatViewModel.messages) { _ in

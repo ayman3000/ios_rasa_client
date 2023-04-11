@@ -40,7 +40,7 @@ class RasaChatViewModel:  ObservableObject {
 
     func setupSocket() {
         // Replace `http://localhost:5005` with your Rasa server URL
-        manager = SocketManager(socketURL: URL(string: "http://172.19.178.48:5005")!, config: [.log(false), .compress])
+        manager = SocketManager(socketURL: URL(string: "http://169.254.87.112:5005")!, config: [.log(false), .compress])
         socket = manager.defaultSocket
     }
 
@@ -54,21 +54,55 @@ class RasaChatViewModel:  ObservableObject {
         }
 
         // Handle the "bot_uttered" event
-        socket.on("bot_uttered") { data, _ in
-            if let response = data.first as? [String: Any], let message = response["text"] as? String {
-                DispatchQueue.main.async {
-                    self.messages.append(ChatMessage(sender: .bot, text: message, buttons: <#T##[String]?#>))
-//                    self.speak(text: message)
-                    
-                    
-                }
-                guard self.isTTSEnabled else { return }
+//        socket.on("bot_uttered") { data, _ in
+//            if let response = data.first as? [String: Any], let message = response["text"] as? String {
+//
+//                handleResponse(response, sender: .bot)
+////                DispatchQueue.main.async {
+////                    self.messages.append(ChatMessage(sender: .bot, text: message, buttons: nil))
+//////                    self.speak(text: message)
+////
+////
+////                }
+////                guard self.isTTSEnabled else { return }
+////
+////                self.speaker.speak(message, language: "en-US")
+//            }
+//        }
+        
+        socket.on("bot_uttered") { [weak self] dataArray, _ in
+            guard let self = self else {return}
+            
+            print("Received data: \(dataArray)")
+            
+            do {
+                let data =  try JSONSerialization.data(withJSONObject: dataArray[0], options: [])
+                let response = try JSONDecoder().decode(RasaResponse.self, from: data)
+                self.handleResponse(response, sender: .bot)
                 
-                self.speaker.speak(message, language: "en-US")
+            } catch {
+                print(" Error decodeing RasaResponse: \(error)")
             }
         }
 
         socket.connect()
+    }
+    
+    private func handleResponse(_ response: RasaResponse, sender: Sender ) {
+//        for message in response.messages {
+      
+        let text = response.text
+        let messageButtons = response.quick_replies?.map { ChatMessage.MessageButton(title: $0.title, payload: $0.payload) }
+        
+                let chatMessage = ChatMessage(sender: sender, text: text,  buttons: messageButtons)
+                DispatchQueue.main.async {
+                    self.messages.append(chatMessage)
+                }
+                guard self.isTTSEnabled else { return }
+                
+                self.speaker.speak(text, language: "en-US")
+            
+        
     }
 
     func disconnect() {
@@ -76,29 +110,11 @@ class RasaChatViewModel:  ObservableObject {
     }
 
     func sendMessage(text: String) {
-        let message = ChatMessage(sender: .user, text: text)
+        let message = ChatMessage(sender: .user, text: text, buttons: nil)
         messages.append(message)
 
         socket.emit("user_uttered", ["message": text])
     }
-//    private func speak(text: String) {
-//        let speechUtterance = AVSpeechUtterance(string: text)
-//        speechUtterance.volume = 2
-////        if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Samantha-compact") {
-////            speechUtterance.voice = voice
-////        }
-////        else {
-////            speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-////
-////        }
-//        speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-//
-//        speaker.speak(msg: speechUtterance)
-////        DispatchQueue.main.async {
-////            self.speechSynthesizer.speak(speechUtterance)
-////               }
-//
-//    }
 
 }
 
