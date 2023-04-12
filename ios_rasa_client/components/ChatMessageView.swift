@@ -30,28 +30,35 @@ struct ChatMessageView: View {
                     .foregroundColor(.blue)
                     .padding(.trailing, 6)
 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text(message.text)
                                         .padding(10)
-                                        .background(Color.gray.opacity(0.1))
+                                        .background(Color.gray.opacity(0.7))
                                         .cornerRadius(10)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.white)
 
                     if let buttons = message.buttons, !buttons.isEmpty {
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 10) {
                             ForEach(buttons, id: \.self) { button in
                                 Button(action: {
 //                                    onButtonTap?(button.payload)
                                     viewModel.sendMessage(text: button.payload)
-                                }) {
+                                })
+                                {
                                     Text(button.title)
-                                    .font(.system(size: 14, weight: .semibold))
+                                    .font(.system(size: 18, weight: .semibold))
                                     .foregroundColor(Color.white)
                                     .padding(.horizontal, 12)
                                     .padding(.vertical, 6)
-                                    .background(Color.blue)
-                                    .cornerRadius(20)
+                                   
+                                    
+                                    .frame(maxWidth: UIScreen.main.bounds.width)
+                                    
+            
                                 }
+                                .padding(.vertical, 10)
+                                .background(Color.blue)
+                                .cornerRadius(10)
                             }
                         }
                     }
