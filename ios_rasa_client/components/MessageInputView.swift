@@ -11,8 +11,6 @@ struct MessageInputView: View {
     @Binding var recognizedText: String
     @Binding var inputText: String
     @ObservedObject var rasaChatViewModel: RasaChatViewModel
-
-       
     
     var body: some View {
         HStack {

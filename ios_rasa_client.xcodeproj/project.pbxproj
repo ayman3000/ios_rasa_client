@@ -77,6 +77,7 @@
 		2ABA95CF29D9840A002BF818 /* ios_rasa_client */ = {
 			isa = PBXGroup;
 			children = (
+				2AC91E9629E6DC54001EC4C1 /* uunused */,
 				2AC91E9529E6D4BC001EC4C1 /* components */,
 				2AC91E9229E6D36E001EC4C1 /* classes */,
 				2AC4D51229E57CDD00665D33 /* models */,
@@ -86,8 +87,6 @@
 				2ABA95D929D9840F002BF818 /* Persistence.swift */,
 				2ABA95DB29D9840F002BF818 /* ios_rasa_client.xcdatamodeld */,
 				2ABA95D629D9840F002BF818 /* Preview Content */,
-				2ABA95E629D9865D002BF818 /* messenger.swift */,
-				2AC4D51529E5949600665D33 /* FlowLAyout.swift */,
 			);
 			path = ios_rasa_client;
 			sourceTree = "<group>";
@@ -127,6 +126,15 @@
 				2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		2AC91E9629E6DC54001EC4C1 /* uunused */ = {
+			isa = PBXGroup;
+			children = (
+				2ABA95E629D9865D002BF818 /* messenger.swift */,
+				2AC4D51529E5949600665D33 /* FlowLAyout.swift */,
+			);
+			path = uunused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
