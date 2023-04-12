@@ -4,7 +4,6 @@
 //
 //  Created by ayman moustafa on 07/04/2023.
 //
-
 import Foundation
 import SocketIO
 import SwiftUI
@@ -17,18 +16,13 @@ class RasaChatViewModel:  ObservableObject {
 
     private var manager: SocketManager!
     private var socket: SocketIOClient!
-//    private let speechSynthesizer = AVSpeechSynthesizer()
     let speaker = Speaker()
-
     init() {
-        
-//        self.speaker.test(msg: "test")
         setupSocket()
         connect()
     }
 
     func setupSocket() {
-        // Replace `http://localhost:5005` with your Rasa server URL
         manager = SocketManager(socketURL: URL(string: "http://172.19.178.29:5005")!, config: [.log(false), .compress])
         socket = manager.defaultSocket
     }
@@ -71,10 +65,7 @@ class RasaChatViewModel:  ObservableObject {
                     self.messages.append(chatMessage)
                 }
                 guard self.isTTSEnabled else { return }
-                
                 self.speaker.speak(text, language: "en-US")
-            
-        
     }
 
     func disconnect() {
@@ -89,54 +80,3 @@ class RasaChatViewModel:  ObservableObject {
     }
 
 }
-
-
-//class Speaker: NSObject {
-//    let synthesizer = AVSpeechSynthesizer()
-//    override init() {
-//        super.init()
-//       synthesizer.delegate = self
-//    }
-//
-//    func speak(_ text: String, language: String) {
-//            do {
-//                let utterance = AVSpeechUtterance(string: text)
-//
-//                if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-US_compact") {
-//                    utterance.voice = voice
-//                     }
-//                     else {
-//                         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-//
-//                     }
-//
-////                utterance.voice = voice
-//
-//                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-//                try AVAudioSession.sharedInstance().setActive(true)
-//                self.synthesizer.speak(utterance)
-//            } catch let error {
-////                self.errorDescription = error.localizedDescription
-////                isShowingSpeakingErrorAlert.toggle()
-//
-//                print( error.localizedDescription)
-//            }
-//        }
-//
-//    func test(msg: String){
-//        self.speak("test", language: "en-US")
-//    }
-//}
-//extension Speaker: AVSpeechSynthesizerDelegate {
-//    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-//        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
-//
-//        print("all done")
-//    }
-//}
-//
-//
-//
-//
-//
-//
