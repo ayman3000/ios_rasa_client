@@ -5,100 +5,94 @@
 //  Created by ayman moustafa on 06/04/2023.
 //
 
+import Foundation
+import SwiftUI
 import Speech
+
 class SpeechRecognizer: NSObject, ObservableObject, SFSpeechRecognizerDelegate {
     @Published var isRecording = false
-    @Published var recognizedText = ""
-
-    private let speechRecognizer = SFSpeechRecognizer()
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
+    private var result: SFSpeechRecognitionResult?
+
+    override init() {
+        super.init()
+        self.speechRecognizer.delegate = self
+    }
 
     func startRecording() {
-        // Check and request authorization
-        SFSpeechRecognizer.requestAuthorization { authStatus in
-            OperationQueue.main.addOperation {
-                switch authStatus {
-                case .authorized:
-                    // Authorization granted, proceed with recording
-                    self.beginRecording()
-                case .denied, .restricted, .notDetermined:
-                    print("Speech recognition authorization denied")
-                @unknown default:
-                    print("Unknown authorization status")
-                }
+        if !isRecording {
+            beginRecording()
+            isRecording = true
+        }
+    }
+
+    func stopRecording(completion: @escaping (String) -> Void) {
+        if audioEngine.isRunning {
+            audioEngine.stop()
+            recognitionRequest?.endAudio()
+            self.recognitionTask?.finish()
+            self.recognitionTask = nil
+            self.recognitionRequest = nil
+            self.audioEngine.inputNode.removeTap(onBus: 0)
+
+            if let recognizedText = result?.bestTranscription.formattedString {
+                completion(recognizedText)
             }
         }
+        isRecording = false
     }
 
     private func beginRecording() {
-        if audioEngine.isRunning {
-            stopRecording()
-//            audioEngine.stop()
-            recognitionRequest?.endAudio()
-        } else {
-            do {
-                try startRecordingSession()
-                isRecording = true
-            } catch {
-                print("Error starting recording session: \(error)")
-            }
+        if recognitionTask != nil {
+            recognitionTask?.cancel()
+            recognitionTask = nil
         }
-    }
 
-    private func startRecordingSession() throws {
-        // Setup audio session
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
-        try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        try? audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+        try? audioSession.setActive(true, options: .notifyOthersOnDeactivation)
 
-        // Setup recognition request
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        guard let recognitionRequest = recognitionRequest else { fatalError("Unable to create a SFSpeechAudioBufferRecognitionRequest object") }
+        guard let recognitionRequest = recognitionRequest else { return }
 
+        let inputNode = audioEngine.inputNode
         recognitionRequest.shouldReportPartialResults = true
 
-        // Setup audio input
-        let inputNode = audioEngine.inputNode
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
+            var isFinal = false
 
-        // Begin recognition task
-        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { result, error in
             if let result = result {
-                self.recognizedText = result.bestTranscription.formattedString
-                if result.isFinal {
-                    self.audioEngine.stop()
-                    self.isRecording = false
-                    inputNode.removeTap(onBus: 0)
-                }
-            } else if let error = error {
-                print("Recognition error: \(error)")
-                self.stopRecording()
+                self?.result = result
+                isFinal = result.isFinal
+            }
+
+            if error != nil || isFinal {
+                self?.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                self?.recognitionRequest = nil
+                self?.recognitionTask = nil
             }
         }
 
-        // Setup input node tap
-        inputNode.installTap(onBus: 0, bufferSize: 4096, format: recordingFormat) { (buffer, _) in
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, _) in
             self.recognitionRequest?.append(buffer)
         }
 
-        // Prepare and start the audio engine
-        audioEngine.prepare()
-        try audioEngine.start()
-    }
-
-    func stopRecording() {
-        if audioEngine.isRunning {
-            audioEngine.stop()
-            
-            recognitionRequest?.endAudio()
-            isRecording = false
-            audioEngine.inputNode.removeTap(onBus: 0)
-            audioEngine.reset()
+        if !audioEngine.isRunning {
+            do {
+                try startAudioEngine()
+            } catch {
+                print("Error starting the audio engine: \(error.localizedDescription)")
+            }
         }
     }
 
+    private func startAudioEngine() throws {
+        audioEngine.prepare()
+        try audioEngine.start()
+    }
 }
-
-

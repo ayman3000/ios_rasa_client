@@ -8,18 +8,26 @@
 import SwiftUI
 
 struct MessageInputView: View {
-    @Binding var recognizedText: String
+    // @Binding var recognizedText: String
     @Binding var inputText: String
     @ObservedObject var rasaChatViewModel: RasaChatViewModel
-    
+    let onRecognizedText: (String) -> Void
+
     var body: some View {
         HStack {
-            SpeechRecognitionButton(recognizedText: $recognizedText)
-            
+            // SpeechRecognitionButton { recognizedText in
+
+            //     rasaChatViewModel.sendMessage(text: recognizedText)
+
+            // }
+
+            SpeechRecognitionButton(onRecognizedText: onRecognizedText)
+
             TextField("Type your message...", text: $inputText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
-            
+
+
             Button(action: {
                 print("Send button tapped")
                 if !inputText.isEmpty {

@@ -9,13 +9,17 @@ import SwiftUI
 
 struct SpeechRecognitionButton: View {
     @StateObject private var speechRecognizer = SpeechRecognizer()
-    @Binding var recognizedText: String
-    
+    // @Binding var recognizedText: String
+    let onRecognizedText: (String) -> Void
+
     var body: some View {
         VStack {
             Button(action: {
                 if speechRecognizer.isRecording {
-                    speechRecognizer.stopRecording()
+                    speechRecognizer.stopRecording() { recognizedText in
+                    onRecognizedText(recognizedText)
+
+                    }
                 } else {
                     speechRecognizer.startRecording()
                 }
@@ -28,12 +32,12 @@ struct SpeechRecognitionButton: View {
                     .clipShape(Circle())
                     .shadow(radius: 10)
             }
-            
-            Text(speechRecognizer.recognizedText)
-                .padding()
-                .onChange(of: speechRecognizer.recognizedText){ newValue in
-                    recognizedText = newValue
-                }
+
+            // Text(speechRecognizer.recognizedText)
+            //     .padding()
+            //     .onChange(of: speechRecognizer.recognizedText){ newValue in
+            //         recognizedText = newValue
+            //     }
         }
     }
 }
