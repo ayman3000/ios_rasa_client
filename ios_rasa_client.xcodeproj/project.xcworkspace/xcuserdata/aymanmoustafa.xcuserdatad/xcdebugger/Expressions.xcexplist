@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #3 in RasaChatViewModel.connect():RasaChatViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(data.first)[&quot;text&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "response">
+            </PersistentString>
+            <PersistentString
+               value = "message.buttons">
+            </PersistentString>
+            <PersistentString
+               value = "dataArray[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RasaChatViewModel.speak(text:):RasaChatViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "voice">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

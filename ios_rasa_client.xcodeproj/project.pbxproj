@@ -21,6 +21,9 @@
 		2ABA95DD29D9840F002BF818 /* ios_rasa_client.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA95DB29D9840F002BF818 /* ios_rasa_client.xcdatamodeld */; };
 		2ABA95E529D98611002BF818 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABA95E429D98611002BF818 /* SocketIO */; };
 		2ABA95E729D9865D002BF818 /* messenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA95E629D9865D002BF818 /* messenger.swift */; };
+		2AC4D51429E57CF700665D33 /* RasaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC4D51329E57CF700665D33 /* RasaResponse.swift */; };
+		2AC4D51629E5949600665D33 /* FlowLAyout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC4D51529E5949600665D33 /* FlowLAyout.swift */; };
+		2AC91E9429E6D3D2001EC4C1 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC91E9329E6D3D2001EC4C1 /* Speaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		2ABA95D929D9840F002BF818 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		2ABA95DC29D9840F002BF818 /* ios_rasa_client.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_rasa_client.xcdatamodel; sourceTree = "<group>"; };
 		2ABA95E629D9865D002BF818 /* messenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messenger.swift; sourceTree = "<group>"; };
+		2AC4D51329E57CF700665D33 /* RasaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RasaResponse.swift; sourceTree = "<group>"; };
+		2AC4D51529E5949600665D33 /* FlowLAyout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLAyout.swift; sourceTree = "<group>"; };
+		2AC91E9329E6D3D2001EC4C1 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,19 +77,16 @@
 		2ABA95CF29D9840A002BF818 /* ios_rasa_client */ = {
 			isa = PBXGroup;
 			children = (
+				2AC91E9629E6DC54001EC4C1 /* uunused */,
+				2AC91E9529E6D4BC001EC4C1 /* components */,
+				2AC91E9229E6D36E001EC4C1 /* classes */,
+				2AC4D51229E57CDD00665D33 /* models */,
 				2ABA95D029D9840A002BF818 /* ios_rasa_clientApp.swift */,
 				2ABA95D229D9840A002BF818 /* ContentView.swift */,
 				2ABA95D429D9840F002BF818 /* Assets.xcassets */,
 				2ABA95D929D9840F002BF818 /* Persistence.swift */,
 				2ABA95DB29D9840F002BF818 /* ios_rasa_client.xcdatamodeld */,
 				2ABA95D629D9840F002BF818 /* Preview Content */,
-				2ABA95E629D9865D002BF818 /* messenger.swift */,
-				2A593CDC29DF54A10023FDCF /* SpeechRecognizer.swift */,
-				2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */,
-				2A593CE029E047690023FDCF /* MessageInputView.swift */,
-				2A593CE229E047970023FDCF /* ChatMessage.swift */,
-				2A593CE429E047EB0023FDCF /* RasaChatViewModel.swift */,
-				2A593CE629E049290023FDCF /* ChatMessageView.swift */,
 			);
 			path = ios_rasa_client;
 			sourceTree = "<group>";
@@ -94,6 +97,44 @@
 				2ABA95D729D9840F002BF818 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2AC4D51229E57CDD00665D33 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				2A593CE229E047970023FDCF /* ChatMessage.swift */,
+				2AC4D51329E57CF700665D33 /* RasaResponse.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		2AC91E9229E6D36E001EC4C1 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				2A593CDC29DF54A10023FDCF /* SpeechRecognizer.swift */,
+				2AC91E9329E6D3D2001EC4C1 /* Speaker.swift */,
+				2A593CE429E047EB0023FDCF /* RasaChatViewModel.swift */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		2AC91E9529E6D4BC001EC4C1 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				2A593CE629E049290023FDCF /* ChatMessageView.swift */,
+				2A593CE029E047690023FDCF /* MessageInputView.swift */,
+				2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		2AC91E9629E6DC54001EC4C1 /* uunused */ = {
+			isa = PBXGroup;
+			children = (
+				2ABA95E629D9865D002BF818 /* messenger.swift */,
+				2AC4D51529E5949600665D33 /* FlowLAyout.swift */,
+			);
+			path = uunused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,9 +219,12 @@
 				2A593CE129E047690023FDCF /* MessageInputView.swift in Sources */,
 				2ABA95D329D9840A002BF818 /* ContentView.swift in Sources */,
 				2ABA95D129D9840A002BF818 /* ios_rasa_clientApp.swift in Sources */,
+				2AC4D51629E5949600665D33 /* FlowLAyout.swift in Sources */,
 				2ABA95DD29D9840F002BF818 /* ios_rasa_client.xcdatamodeld in Sources */,
+				2AC4D51429E57CF700665D33 /* RasaResponse.swift in Sources */,
 				2ABA95E729D9865D002BF818 /* messenger.swift in Sources */,
 				2A593CE529E047EB0023FDCF /* RasaChatViewModel.swift in Sources */,
+				2AC91E9429E6D3D2001EC4C1 /* Speaker.swift in Sources */,
 				2A593CDD29DF54A10023FDCF /* SpeechRecognizer.swift in Sources */,
 				2A593CDF29DF55760023FDCF /* SpeechRecognizerButton.swift in Sources */,
 			);
@@ -239,7 +283,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -293,7 +337,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
