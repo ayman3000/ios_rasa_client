@@ -7,18 +7,21 @@
 
 import SwiftUI
 
+// This view provides a button to start and stop recording audio for speech recognition using the SpeechRecognizer class
 struct SpeechRecognitionButton: View {
+    // Create an instance of the SpeechRecognizer class
     @StateObject private var speechRecognizer = SpeechRecognizer()
-    // @Binding var recognizedText: String
+    
+    // A closure to handle recognized text
     let onRecognizedText: (String) -> Void
 
     var body: some View {
         VStack {
+            // The button starts and stops recording audio for speech recognition
             Button(action: {
                 if speechRecognizer.isRecording {
                     speechRecognizer.stopRecording() { recognizedText in
                     onRecognizedText(recognizedText)
-
                     }
                 } else {
                     speechRecognizer.startRecording()
@@ -32,12 +35,6 @@ struct SpeechRecognitionButton: View {
                     .clipShape(Circle())
                     .shadow(radius: 10)
             }
-
-            // Text(speechRecognizer.recognizedText)
-            //     .padding()
-            //     .onChange(of: speechRecognizer.recognizedText){ newValue in
-            //         recognizedText = newValue
-            //     }
         }
     }
 }

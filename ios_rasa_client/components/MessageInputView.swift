@@ -1,10 +1,3 @@
-//
-//  MessageInputView.swift
-//  ios_rasa_client
-//
-//  Created by ayman moustafa on 07/04/2023.
-//
-
 import SwiftUI
 
 struct MessageInputView: View {
@@ -15,26 +8,24 @@ struct MessageInputView: View {
 
     var body: some View {
         HStack {
-            // SpeechRecognitionButton { recognizedText in
 
-            //     rasaChatViewModel.sendMessage(text: recognizedText)
-
-            // }
-
+            // Custom view for speech recognition button
             SpeechRecognitionButton(onRecognizedText: onRecognizedText)
 
+            // Text field for manual message input
             TextField("Type your message...", text: $inputText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
 
-
+            // Button to send the user's message
             Button(action: {
                 print("Send button tapped")
                 if !inputText.isEmpty {
-                       rasaChatViewModel.sendMessage(text: inputText)
-                       inputText = ""
-                   }
-                // Implement your send action here
+                    // Call the sendMessage function of the view model to send the message
+                    rasaChatViewModel.sendMessage(text: inputText)
+                    // Reset the input text to an empty string
+                    inputText = ""
+                }
             }) {
                 Text("Send")
                     .bold()
@@ -48,6 +39,3 @@ struct MessageInputView: View {
         .padding()
     }
 }
-
-
-
