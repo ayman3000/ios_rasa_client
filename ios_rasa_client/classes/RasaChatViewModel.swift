@@ -31,7 +31,7 @@ class RasaChatViewModel:  ObservableObject {
 
     // Set up the SocketIO client
     func setupSocket() {
-        manager = SocketManager(socketURL: URL(string: "http://172.19.178.29:5005")!, config: [.log(false), .compress])
+        manager = SocketManager(socketURL: URL(string: "http://localhost:5005")!, config: [.log(false), .compress])
         socket = manager.defaultSocket
     }
 
