@@ -22,6 +22,9 @@ This is an iOS client that connects to a Rasa chatbot using Socket.IO. It allows
 3. Change the URL in the `setupSocket()` function of the `RasaChatViewModel` to the URL of your Rasa chatbot.
 4. Build and run the app on a simulator or a physical device.
 
+## Note
+It's important for developers to add their own signing information when using this project. They can do this by opening the Xcode project, selecting the target, and then selecting the "Signing & Capabilities" tab. From there, they can add their own signing information. It's important to note that this step is necessary for the project to run correctly on a physical device or to be distributed through the App Store.
+
 ## Future Improvements
 
 - Use Rasa REST APIs instead of Socket.IO
