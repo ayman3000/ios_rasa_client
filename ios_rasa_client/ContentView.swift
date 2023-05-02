@@ -32,7 +32,7 @@ struct ContentView: View {
             .padding()
         }
         // Set navigation bar title and add a speaker toggle button to the navigation bar
-        .navigationBarTitle("AAST Bot", displayMode: .large)
+        .navigationBarTitle("Rasa Bot", displayMode: .large)
         .navigationBarItems(trailing:
             Button(action: {
                 // Toggle the text-to-speech feature
