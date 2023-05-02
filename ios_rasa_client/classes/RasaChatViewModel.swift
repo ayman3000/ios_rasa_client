@@ -29,6 +29,7 @@ class RasaChatViewModel:  ObservableObject {
     init() {
         setupSocket()
         connect()
+        sendMessage(text: "hi", sender: .bot)
     }
 
     // Set up the SocketIO client
@@ -91,8 +92,8 @@ class RasaChatViewModel:  ObservableObject {
     }
 
     // Send a message to the chatbot
-    func sendMessage(text: String) {
-        let message = ChatMessage(sender: .user, text: text, buttons: nil)
+    func sendMessage(text: String, sender: Sender = .user) {
+        let message = ChatMessage(sender: sender, text: text, buttons: nil)
         messages.append(message)
 
         socket.emit("user_uttered", ["message": text])

@@ -9,45 +9,57 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                // Show messages in a scrollable view
-                ScrollView {
-                    ScrollViewReader { proxy in
-                        // Loop through all messages and show each in a ChatMessageView
-                        LazyVStack {
-                            ForEach(rasaChatViewModel.messages) { message in
-                                ChatMessageView(message: ChatMessage(sender: message.sender, text: message.text, buttons: message.buttons), viewModel: rasaChatViewModel)
-                            }
-                            .onChange(of: rasaChatViewModel.messages) { _ in
-                                // Scroll to the last message when a new one is added
-                                proxy.scrollTo(rasaChatViewModel.messages.last?.id, anchor: .bottom)
+            ZStack {
+                Color(red: 0.0, green: 0.5, blue: 0.0, opacity: 0.2)
+                    .ignoresSafeArea()
+                
+                VStack {
+                    // Show messages in a scrollable view
+                    ScrollView {
+                        ScrollViewReader { proxy in
+                            // Loop through all messages and show each in a ChatMessageView
+                            LazyVStack {
+                                ForEach(rasaChatViewModel.messages.dropFirst()) { message in
+                                    ChatMessageView(message: ChatMessage(sender: message.sender, text: message.text, buttons: message.buttons), viewModel: rasaChatViewModel)
+                                }
+                                .onChange(of: rasaChatViewModel.messages) { _ in
+                                    // Scroll to the last message when a new one is added
+                                    proxy.scrollTo(rasaChatViewModel.messages.last?.id, anchor: .bottom)
+                                }
                             }
                         }
                     }
+                    // Show a message input box with a speech recognition button and a send button
+                    MessageInputView(inputText: $inputText, rasaChatViewModel: rasaChatViewModel, onRecognizedText: { recognizedText in
+                        rasaChatViewModel.sendMessage(text: recognizedText)
+                    })
                 }
-                // Show a message input box with a speech recognition button and a send button
-                MessageInputView(inputText: $inputText, rasaChatViewModel: rasaChatViewModel, onRecognizedText: { recognizedText in
-                    rasaChatViewModel.sendMessage(text: recognizedText)
-                })
+                .foregroundColor(.white)
+                .padding()
+                
+                // Set navigation bar title and add a speaker toggle button to the navigation bar
+                .navigationBarTitle("Rasa Chatbot",
+                                    displayMode: .inline)
+                .font(.title)
+                
+                
+                
+                .navigationBarItems(leading:
+                                        Button(action: {
+                    rasaChatViewModel.isTTSEnabled.toggle()
+                }) {
+                    Image(systemName: rasaChatViewModel.isTTSEnabled ? "speaker.wave.3.fill" : "speaker.slash.fill")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                },
+                                    trailing: NavigationLink(destination:  SettingsView(rasaChatViewModel: rasaChatViewModel)) {
+                    Image(systemName: "gear")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                }
+                )
             }
-            .padding()
         }
-        // Set navigation bar title and add a speaker toggle button to the navigation bar
-        .navigationBarTitle("Rasa Bot", displayMode: .large)
-        .navigationBarItems(leading:
-                                Button(action: {
-            rasaChatViewModel.isTTSEnabled.toggle()
-        }) {
-            Image(systemName: rasaChatViewModel.isTTSEnabled ? "speaker.wave.3.fill" : "speaker.slash.fill")
-                .resizable()
-                .frame(width: 20, height: 20)
-        },
-                            trailing: NavigationLink(destination:  SettingsView(rasaChatViewModel: rasaChatViewModel)) {
-                Image(systemName: "gear")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-            }
-        )
     }
 }
 

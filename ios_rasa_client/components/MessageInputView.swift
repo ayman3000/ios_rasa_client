@@ -15,8 +15,8 @@ struct MessageInputView: View {
             // Text field for manual message input
             TextField("Type your message...", text: $inputText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
-
+                .fontWeight(.regular)
+                .padding(.horizontal, 5)
             // Button to send the user's message
             Button(action: {
                 print("Send button tapped")
@@ -28,14 +28,15 @@ struct MessageInputView: View {
                 }
             }) {
                 Text("Send")
-                    .bold()
                     .foregroundColor(.white)
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 8)
                     .padding(.vertical, 8)
                     .background(Color.blue)
                     .cornerRadius(8)
+                    .font(.system(size: 16, weight: .regular))
+                    
             }
         }
-        .padding()
+//        .padding()
     }
 }
