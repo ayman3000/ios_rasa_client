@@ -16,6 +16,8 @@ class RasaChatViewModel:  ObservableObject {
     @Published var messages: [ChatMessage] = []
     @Published var isConnected = false
     @Published var isTTSEnabled: Bool = true
+    @Published var socketioAddress: String = "http:/localhost:5005" // <-- declare the socketioAddress here
+
 
     // Properties used to manage the SocketIO connection
     private var manager: SocketManager!

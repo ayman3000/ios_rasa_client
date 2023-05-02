@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A1782442A0145EE001662E7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1782432A0145EE001662E7 /* SettingsView.swift */; };
 		2A593CDD29DF54A10023FDCF /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A593CDC29DF54A10023FDCF /* SpeechRecognizer.swift */; };
 		2A593CDF29DF55760023FDCF /* SpeechRecognizerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */; };
 		2A593CE129E047690023FDCF /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A593CE029E047690023FDCF /* MessageInputView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A1782432A0145EE001662E7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2A593CDC29DF54A10023FDCF /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerButton.swift; sourceTree = "<group>"; };
 		2A593CE029E047690023FDCF /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
@@ -54,6 +56,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A1782452A014B9E001662E7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2ABA95D229D9840A002BF818 /* ContentView.swift */,
+				2A1782432A0145EE001662E7 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2ABA95C429D9840A002BF818 = {
 			isa = PBXGroup;
 			children = (
@@ -73,11 +84,11 @@
 		2ABA95CF29D9840A002BF818 /* ios_rasa_client */ = {
 			isa = PBXGroup;
 			children = (
+				2A1782452A014B9E001662E7 /* Views */,
 				2AC91E9529E6D4BC001EC4C1 /* components */,
 				2AC91E9229E6D36E001EC4C1 /* classes */,
 				2AC4D51229E57CDD00665D33 /* models */,
 				2ABA95D029D9840A002BF818 /* ios_rasa_clientApp.swift */,
-				2ABA95D229D9840A002BF818 /* ContentView.swift */,
 				2ABA95D429D9840F002BF818 /* Assets.xcassets */,
 				2ABA95D929D9840F002BF818 /* Persistence.swift */,
 				2ABA95DB29D9840F002BF818 /* ios_rasa_client.xcdatamodeld */,
@@ -211,6 +222,7 @@
 				2AC91E9429E6D3D2001EC4C1 /* Speaker.swift in Sources */,
 				2A593CDD29DF54A10023FDCF /* SpeechRecognizer.swift in Sources */,
 				2A593CDF29DF55760023FDCF /* SpeechRecognizerButton.swift in Sources */,
+				2A1782442A0145EE001662E7 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
