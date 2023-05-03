@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct ContentView: View {
     // Initialize the view model
     @StateObject private var rasaChatViewModel = RasaChatViewModel()
@@ -8,6 +9,7 @@ struct ContentView: View {
     @State var socketioAddress: String = "http://localhost:5005"
 
     var body: some View {
+        
         NavigationView {
             ZStack {
                 Color(red: 0.0, green: 0.5, blue: 0.0, opacity: 0.2)
@@ -62,6 +64,8 @@ struct ContentView: View {
         }
     }
 }
+let contentView = ContentView() // assigning to a variable
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

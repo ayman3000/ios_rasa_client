@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A1782442A0145EE001662E7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1782432A0145EE001662E7 /* SettingsView.swift */; };
+		2A1782472A01BEA9001662E7 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1782462A01BEA9001662E7 /* SplashScreenView.swift */; };
 		2A593CDD29DF54A10023FDCF /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A593CDC29DF54A10023FDCF /* SpeechRecognizer.swift */; };
 		2A593CDF29DF55760023FDCF /* SpeechRecognizerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */; };
 		2A593CE129E047690023FDCF /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A593CE029E047690023FDCF /* MessageInputView.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		2A1782432A0145EE001662E7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2A1782462A01BEA9001662E7 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		2A593CDC29DF54A10023FDCF /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerButton.swift; sourceTree = "<group>"; };
 		2A593CE029E047690023FDCF /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			children = (
 				2ABA95D229D9840A002BF818 /* ContentView.swift */,
 				2A1782432A0145EE001662E7 /* SettingsView.swift */,
+				2A1782462A01BEA9001662E7 /* SplashScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				2ABA95D329D9840A002BF818 /* ContentView.swift in Sources */,
 				2ABA95D129D9840A002BF818 /* ios_rasa_clientApp.swift in Sources */,
 				2ABA95DD29D9840F002BF818 /* ios_rasa_client.xcdatamodeld in Sources */,
+				2A1782472A01BEA9001662E7 /* SplashScreenView.swift in Sources */,
 				2AC4D51429E57CF700665D33 /* RasaResponse.swift in Sources */,
 				2A593CE529E047EB0023FDCF /* RasaChatViewModel.swift in Sources */,
 				2AC91E9429E6D3D2001EC4C1 /* Speaker.swift in Sources */,
