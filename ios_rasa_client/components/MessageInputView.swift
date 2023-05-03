@@ -14,6 +14,7 @@ struct MessageInputView: View {
 
             // Text field for manual message input
             TextField("Type your message...", text: $inputText)
+                .font(.system(size: 18))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .fontWeight(.regular)
                 .padding(.horizontal, 5)

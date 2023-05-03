@@ -12,7 +12,7 @@ struct ContentView: View {
         
         NavigationView {
             ZStack {
-                Color(red: 0.0, green: 0.5, blue: 0.0, opacity: 0.2)
+                Color(red: 0.0, green: 0.1, blue: 0.0, opacity: 0.2)
                     .ignoresSafeArea()
                 
                 VStack {
@@ -27,6 +27,7 @@ struct ContentView: View {
                                 .onChange(of: rasaChatViewModel.messages) { _ in
                                     // Scroll to the last message when a new one is added
                                     proxy.scrollTo(rasaChatViewModel.messages.last?.id, anchor: .bottom)
+                            
                                 }
                             }
                         }

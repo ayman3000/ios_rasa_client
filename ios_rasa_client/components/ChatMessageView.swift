@@ -19,10 +19,12 @@ struct ChatMessageView: View {
                 // Display the user's message on the right side
                 Spacer()
                 Text(message.text)
-                    .padding(12)
+                    .font(.system(size: 18))
+                    .padding(6)
                     .background(Color(UIColor.white))
                     .foregroundColor(.black)
                     .cornerRadius(10)
+                    
                 Image(systemName: "person.fill")
                     .font(.system(size: 18))
                     .foregroundColor(.green)
