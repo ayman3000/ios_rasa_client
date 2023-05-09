@@ -9,6 +9,7 @@ import Foundation
 import SocketIO
 import SwiftUI
 import AVFoundation
+import Combine
 
 // This class handles communication with a Rasa chatbot using SocketIO
 class RasaChatViewModel:  ObservableObject {
@@ -17,7 +18,7 @@ class RasaChatViewModel:  ObservableObject {
     @Published var isConnected = false
     @Published var isTTSEnabled: Bool = true
     @Published var socketioAddress: String = "http:/localhost:5005" // <-- declare the socketioAddress here
-
+    private var cancellables: Set<AnyCancellable> = []
 
     // Properties used to manage the SocketIO connection
     private var manager: SocketManager!
@@ -30,6 +31,15 @@ class RasaChatViewModel:  ObservableObject {
         setupSocket()
         connect()
         sendMessage(text: "hi", sender: .bot)
+        subscribeToSocketioAddress()
+    }
+    
+    func subscribeToSocketioAddress() {
+        // Subscribe to the socketioAddress publisher in SettingsViewModel
+        SettingsViewModel()
+            .$socketioAddress
+            .assign(to: \.socketioAddress, on: self)
+            .store(in: &cancellables)
     }
 
     // Set up the SocketIO client

@@ -24,6 +24,7 @@
 		2ABA95E529D98611002BF818 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABA95E429D98611002BF818 /* SocketIO */; };
 		2AC4D51429E57CF700665D33 /* RasaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC4D51329E57CF700665D33 /* RasaResponse.swift */; };
 		2AC91E9429E6D3D2001EC4C1 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC91E9329E6D3D2001EC4C1 /* Speaker.swift */; };
+		2AF139D22A0A1494008ADAA1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF139D12A0A1494008ADAA1 /* SettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		2ABA95DC29D9840F002BF818 /* ios_rasa_client.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_rasa_client.xcdatamodel; sourceTree = "<group>"; };
 		2AC4D51329E57CF700665D33 /* RasaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RasaResponse.swift; sourceTree = "<group>"; };
 		2AC91E9329E6D3D2001EC4C1 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
+		2AF139D12A0A1494008ADAA1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		2ABA95CF29D9840A002BF818 /* ios_rasa_client */ = {
 			isa = PBXGroup;
 			children = (
+				2AF139D02A0A1470008ADAA1 /* ViewModels */,
 				2A1782452A014B9E001662E7 /* Views */,
 				2AC91E9529E6D4BC001EC4C1 /* components */,
 				2AC91E9229E6D36E001EC4C1 /* classes */,
@@ -122,7 +125,6 @@
 			children = (
 				2A593CDC29DF54A10023FDCF /* SpeechRecognizer.swift */,
 				2AC91E9329E6D3D2001EC4C1 /* Speaker.swift */,
-				2A593CE429E047EB0023FDCF /* RasaChatViewModel.swift */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -135,6 +137,15 @@
 				2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		2AF139D02A0A1470008ADAA1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2A593CE429E047EB0023FDCF /* RasaChatViewModel.swift */,
+				2AF139D12A0A1494008ADAA1 /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +229,7 @@
 				2ABA95DA29D9840F002BF818 /* Persistence.swift in Sources */,
 				2A593CE129E047690023FDCF /* MessageInputView.swift in Sources */,
 				2ABA95D329D9840A002BF818 /* ContentView.swift in Sources */,
+				2AF139D22A0A1494008ADAA1 /* SettingsViewModel.swift in Sources */,
 				2ABA95D129D9840A002BF818 /* ios_rasa_clientApp.swift in Sources */,
 				2ABA95DD29D9840F002BF818 /* ios_rasa_client.xcdatamodeld in Sources */,
 				2A1782472A01BEA9001662E7 /* SplashScreenView.swift in Sources */,
@@ -351,7 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = customAccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ios_rasa_client/Preview Content\"";
@@ -385,7 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = customAccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ios_rasa_client/Preview Content\"";
