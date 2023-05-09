@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A1782442A0145EE001662E7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1782432A0145EE001662E7 /* SettingsView.swift */; };
+		2A1782472A01BEA9001662E7 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1782462A01BEA9001662E7 /* SplashScreenView.swift */; };
 		2A593CDD29DF54A10023FDCF /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A593CDC29DF54A10023FDCF /* SpeechRecognizer.swift */; };
 		2A593CDF29DF55760023FDCF /* SpeechRecognizerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */; };
 		2A593CE129E047690023FDCF /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A593CE029E047690023FDCF /* MessageInputView.swift */; };
@@ -20,13 +22,13 @@
 		2ABA95DA29D9840F002BF818 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA95D929D9840F002BF818 /* Persistence.swift */; };
 		2ABA95DD29D9840F002BF818 /* ios_rasa_client.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA95DB29D9840F002BF818 /* ios_rasa_client.xcdatamodeld */; };
 		2ABA95E529D98611002BF818 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABA95E429D98611002BF818 /* SocketIO */; };
-		2ABA95E729D9865D002BF818 /* messenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA95E629D9865D002BF818 /* messenger.swift */; };
 		2AC4D51429E57CF700665D33 /* RasaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC4D51329E57CF700665D33 /* RasaResponse.swift */; };
-		2AC4D51629E5949600665D33 /* FlowLAyout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC4D51529E5949600665D33 /* FlowLAyout.swift */; };
 		2AC91E9429E6D3D2001EC4C1 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC91E9329E6D3D2001EC4C1 /* Speaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A1782432A0145EE001662E7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2A1782462A01BEA9001662E7 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		2A593CDC29DF54A10023FDCF /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerButton.swift; sourceTree = "<group>"; };
 		2A593CE029E047690023FDCF /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
@@ -40,9 +42,7 @@
 		2ABA95D729D9840F002BF818 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2ABA95D929D9840F002BF818 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		2ABA95DC29D9840F002BF818 /* ios_rasa_client.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_rasa_client.xcdatamodel; sourceTree = "<group>"; };
-		2ABA95E629D9865D002BF818 /* messenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messenger.swift; sourceTree = "<group>"; };
 		2AC4D51329E57CF700665D33 /* RasaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RasaResponse.swift; sourceTree = "<group>"; };
-		2AC4D51529E5949600665D33 /* FlowLAyout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLAyout.swift; sourceTree = "<group>"; };
 		2AC91E9329E6D3D2001EC4C1 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +58,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A1782452A014B9E001662E7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2ABA95D229D9840A002BF818 /* ContentView.swift */,
+				2A1782432A0145EE001662E7 /* SettingsView.swift */,
+				2A1782462A01BEA9001662E7 /* SplashScreenView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2ABA95C429D9840A002BF818 = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +87,11 @@
 		2ABA95CF29D9840A002BF818 /* ios_rasa_client */ = {
 			isa = PBXGroup;
 			children = (
-				2AC91E9629E6DC54001EC4C1 /* uunused */,
+				2A1782452A014B9E001662E7 /* Views */,
 				2AC91E9529E6D4BC001EC4C1 /* components */,
 				2AC91E9229E6D36E001EC4C1 /* classes */,
 				2AC4D51229E57CDD00665D33 /* models */,
 				2ABA95D029D9840A002BF818 /* ios_rasa_clientApp.swift */,
-				2ABA95D229D9840A002BF818 /* ContentView.swift */,
 				2ABA95D429D9840F002BF818 /* Assets.xcassets */,
 				2ABA95D929D9840F002BF818 /* Persistence.swift */,
 				2ABA95DB29D9840F002BF818 /* ios_rasa_client.xcdatamodeld */,
@@ -126,15 +135,6 @@
 				2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */,
 			);
 			path = components;
-			sourceTree = "<group>";
-		};
-		2AC91E9629E6DC54001EC4C1 /* uunused */ = {
-			isa = PBXGroup;
-			children = (
-				2ABA95E629D9865D002BF818 /* messenger.swift */,
-				2AC4D51529E5949600665D33 /* FlowLAyout.swift */,
-			);
-			path = uunused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,14 +219,14 @@
 				2A593CE129E047690023FDCF /* MessageInputView.swift in Sources */,
 				2ABA95D329D9840A002BF818 /* ContentView.swift in Sources */,
 				2ABA95D129D9840A002BF818 /* ios_rasa_clientApp.swift in Sources */,
-				2AC4D51629E5949600665D33 /* FlowLAyout.swift in Sources */,
 				2ABA95DD29D9840F002BF818 /* ios_rasa_client.xcdatamodeld in Sources */,
+				2A1782472A01BEA9001662E7 /* SplashScreenView.swift in Sources */,
 				2AC4D51429E57CF700665D33 /* RasaResponse.swift in Sources */,
-				2ABA95E729D9865D002BF818 /* messenger.swift in Sources */,
 				2A593CE529E047EB0023FDCF /* RasaChatViewModel.swift in Sources */,
 				2AC91E9429E6D3D2001EC4C1 /* Speaker.swift in Sources */,
 				2A593CDD29DF54A10023FDCF /* SpeechRecognizer.swift in Sources */,
 				2A593CDF29DF55760023FDCF /* SpeechRecognizerButton.swift in Sources */,
+				2A1782442A0145EE001662E7 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,19 +358,22 @@
 				DEVELOPMENT_TEAM = 68U3JJ2CMQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = aRasa;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "to record user voice";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "to recognize user words";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ayman.ios-rasa-client";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayman3000.aRasa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -389,19 +392,22 @@
 				DEVELOPMENT_TEAM = 68U3JJ2CMQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = aRasa;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "to record user voice";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "to recognize user words";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ayman.ios-rasa-client";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayman3000.aRasa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
