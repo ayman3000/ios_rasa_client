@@ -52,6 +52,7 @@ class RasaChatViewModel:  ObservableObject {
         // Handle "bot_uttered" events
         socket.on("bot_uttered") { [weak self] dataArray, _ in
             guard let self = self else {return}
+            guard !dataArray.isEmpty else {return}
             
             print("Received data: \(dataArray)")
             
@@ -92,10 +93,21 @@ class RasaChatViewModel:  ObservableObject {
     }
 
     // Send a message to the chatbot
-    func sendMessage(text: String, sender: Sender = .user) {
-        let message = ChatMessage(sender: sender, text: text, buttons: nil)
-        messages.append(message)
-
-        socket.emit("user_uttered", ["message": text])
+//    func sendMessage(text: String, sender: Sender = .user) {
+//        let message = ChatMessage(sender: sender, text: text, buttons: nil)
+//        messages.append(message)
+//
+//        socket.emit("user_uttered", ["message": text])
+//    }
+    
+    func sendMessage(text: String, sender: Sender = .user,  buttonPayload: String? = nil, buttonTitle: String? = nil) {
+        if let payload = buttonPayload, let title = buttonTitle {
+            messages.append(ChatMessage(sender: sender, text: title, buttons: nil))
+            socket.emit("user_uttered", ["message": payload])
+        } else {
+            messages.append(ChatMessage(sender: sender, text: text, buttons: nil))
+            socket.emit("user_uttered", ["message": text])
+        }
     }
+
 }

@@ -4,6 +4,10 @@ struct MessageInputView: View {
     // @Binding var recognizedText: String
     @Binding var inputText: String
     @ObservedObject var rasaChatViewModel: RasaChatViewModel
+//    @State private var isFocused = false
+    @FocusState private var isFocused: Bool
+
+    
     let onRecognizedText: (String) -> Void
 
     var body: some View {
@@ -18,6 +22,13 @@ struct MessageInputView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .fontWeight(.regular)
                 .padding(.horizontal, 5)
+                .focused($isFocused)
+                .onSubmit {
+                               self.sendButtonAction()
+                           }
+                .onAppear {
+                    isFocused  = true
+                }
             // Button to send the user's message
             Button(action: {
                 print("Send button tapped")
@@ -26,6 +37,7 @@ struct MessageInputView: View {
                     rasaChatViewModel.sendMessage(text: inputText)
                     // Reset the input text to an empty string
                     inputText = ""
+                    isFocused = true
                 }
             }) {
                 Text("Send")
@@ -40,4 +52,13 @@ struct MessageInputView: View {
         }
 //        .padding()
     }
+    
+    private func sendButtonAction() {
+           print("Return button tapped")
+           if !inputText.isEmpty {
+               rasaChatViewModel.sendMessage(text: inputText)
+               inputText = ""
+           }
+        isFocused = true
+       }
 }

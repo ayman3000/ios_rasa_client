@@ -15,6 +15,7 @@ struct ios_rasa_clientApp: App {
         
         WindowGroup {
             SplashScreenView().environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .accentColor(Color("#48B4A4"))
 
             
 

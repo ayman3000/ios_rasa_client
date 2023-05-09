@@ -63,6 +63,10 @@ struct ContentView: View {
                 )
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
     }
 }
 let contentView = ContentView() // assigning to a variable

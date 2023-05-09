@@ -11,18 +11,26 @@ struct SettingsView: View {
 
     var body: some View {
         VStack {
-            TextField("SocketIO Address", text: $socketioAddress)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            HStack {
+                Text("Rasa url: ")
+                TextField("SocketIO Address", text: $socketioAddress)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-            
-            Button("Save") {
-                rasaChatViewModel.socketioAddress = socketioAddress
             }
-            .padding()
+            
+            HStack(alignment: .center) {
+                Button("Save") {
+                    rasaChatViewModel.socketioAddress = socketioAddress
+                }
+                .padding(.horizontal, 10)
+            }
+            .padding(.horizontal)
         }
+        .padding(.horizontal,10)
         .onAppear {
             // Set the initial value of the socketioAddress
             socketioAddress = rasaChatViewModel.socketioAddress
         }
+        
     }
 }

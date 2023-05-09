@@ -21,13 +21,9 @@ struct SplashScreenView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 400, height: 400)
-//                    Text("aRasa")
-//                        .font(.largeTitle)
-//                        .fontWeight(.bold)
-//                        .foregroundColor(.blue)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.blue)
+                .background(Color.black)
             }
         }.onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -36,6 +32,7 @@ struct SplashScreenView: View {
                 }
             }
         }
+        .ignoresSafeArea()
     }
 }
 

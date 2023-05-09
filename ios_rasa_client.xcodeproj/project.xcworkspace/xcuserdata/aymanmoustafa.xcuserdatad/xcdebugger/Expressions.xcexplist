@@ -3,6 +3,25 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "String.htmlLinks():ChatMessageView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "url">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RasaChatViewModel.speak(text:):RasaChatViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "voice">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RasaChatViewModel.handleResponse(_:sender:):RasaChatViewModel.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #3 in RasaChatViewModel.connect():RasaChatViewModel.swift">
          <PersistentStrings>
             <PersistentString
@@ -20,10 +39,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RasaChatViewModel.speak(text:):RasaChatViewModel.swift">
+         contextName = "closure #1 in closure #1 in ChatMessageView.body.getter:ChatMessageView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "voice">
+               value = "attributedString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
