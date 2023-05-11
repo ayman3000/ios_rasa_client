@@ -4,13 +4,10 @@ import SwiftUI
 struct ContentView: View {
     // Initialize the view model
     @StateObject private var rasaChatViewModel = RasaChatViewModel()
-    @StateObject private var settingsViewModel = SettingsViewModel()
     // Initialize the input text
     @State private var inputText = ""
     @State var socketioAddress: String = "http://localhost:5005"
     @State private var settingsPresented = false
-
-
     var body: some View {
 
         NavigationView {
@@ -38,6 +35,7 @@ struct ContentView: View {
                     // Show a message input box with a speech recognition button and a send button
                     MessageInputView(inputText: $inputText, rasaChatViewModel: rasaChatViewModel, onRecognizedText: { recognizedText in
                         rasaChatViewModel.sendMessage(text: recognizedText)
+                        
                     })
                 }
                 .foregroundColor(.white)
@@ -47,9 +45,6 @@ struct ContentView: View {
                 .navigationBarTitle("Rasa Chatbot",
                                     displayMode: .inline)
                 .font(.title)
-
-
-
 
             }
                                     .navigationBarItems(leading:
@@ -62,21 +57,8 @@ struct ContentView: View {
                         .frame(width: 20, height: 20)
                         .foregroundColor(.white)
                 },
-//                                    trailing: NavigationLink(destination:  SettingsView(viewModel: settingsViewModel)) {
-////                                        Text("Settings")
-////                                              .font(.system(size: 20, weight: .medium))
-////                                              .foregroundColor(.white)
-//                    Image(systemName: "gear")
-//                        .resizable()
-//                        .frame(width: 20, height: 20)
-//                        .foregroundColor(.white)
-//                }
-//                )
 
                 trailing: Button(action: {
-                       settingsViewModel.socketioAddress = socketioAddress
-//                       rasaChatViewModel.updateSocketAddress(socketioAddress: settingsViewModel.socketioAddress)
-//                       settingsViewModel.showSettings = true
                                         settingsPresented = true
                    }) {
                        Image(systemName: "gear")
@@ -84,7 +66,7 @@ struct ContentView: View {
                            .frame(width: 20, height: 20)
                    }
                    .sheet(isPresented: $settingsPresented) {
-                       SettingsView(viewModel: settingsViewModel)
+                       SettingsView( isPresented: $settingsPresented, viewModel: rasaChatViewModel)
                    }
         )}
 

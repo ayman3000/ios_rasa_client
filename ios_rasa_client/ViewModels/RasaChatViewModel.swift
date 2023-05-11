@@ -35,16 +35,23 @@ class RasaChatViewModel:  ObservableObject {
     }
     
     func subscribeToSocketioAddress() {
-        // Subscribe to the socketioAddress publisher in SettingsViewModel
-        SettingsViewModel()
-            .$socketioAddress
-            .assign(to: \.socketioAddress, on: self)
-            .store(in: &cancellables)
+        $socketioAddress
+                    .sink { address in
+                        UserDefaults.standard.setValue(address, forKey: "socketioAddress")
+                    }
+                    .store(in: &cancellables)
+                
+                if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
+                    socketioAddress = savedAddress
+                
+            }
+        
+        
     }
 
     // Set up the SocketIO client
     func setupSocket() {
-        manager = SocketManager(socketURL: URL(string: "http://localhost:5005")!, config: [.log(false), .compress])
+        manager = SocketManager(socketURL: URL(string: socketioAddress)!, config: [.log(false), .compress])
         socket = manager.defaultSocket
     }
 
@@ -103,13 +110,6 @@ class RasaChatViewModel:  ObservableObject {
     }
 
     // Send a message to the chatbot
-//    func sendMessage(text: String, sender: Sender = .user) {
-//        let message = ChatMessage(sender: sender, text: text, buttons: nil)
-//        messages.append(message)
-//
-//        socket.emit("user_uttered", ["message": text])
-//    }
-    
     func sendMessage(text: String, sender: Sender = .user,  buttonPayload: String? = nil, buttonTitle: String? = nil) {
         if let payload = buttonPayload, let title = buttonTitle {
             messages.append(ChatMessage(sender: sender, text: title, buttons: nil))

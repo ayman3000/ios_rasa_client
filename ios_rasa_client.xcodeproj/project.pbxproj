@@ -91,7 +91,7 @@
 			children = (
 				2AF139D02A0A1470008ADAA1 /* ViewModels */,
 				2A1782452A014B9E001662E7 /* Views */,
-				2AC91E9529E6D4BC001EC4C1 /* components */,
+				2AC91E9529E6D4BC001EC4C1 /* widgets */,
 				2AC91E9229E6D36E001EC4C1 /* classes */,
 				2AC4D51229E57CDD00665D33 /* models */,
 				2ABA95D029D9840A002BF818 /* ios_rasa_clientApp.swift */,
@@ -129,14 +129,14 @@
 			path = classes;
 			sourceTree = "<group>";
 		};
-		2AC91E9529E6D4BC001EC4C1 /* components */ = {
+		2AC91E9529E6D4BC001EC4C1 /* widgets */ = {
 			isa = PBXGroup;
 			children = (
 				2A593CE629E049290023FDCF /* ChatMessageView.swift */,
 				2A593CE029E047690023FDCF /* MessageInputView.swift */,
 				2A593CDE29DF55760023FDCF /* SpeechRecognizerButton.swift */,
 			);
-			path = components;
+			path = widgets;
 			sourceTree = "<group>";
 		};
 		2AF139D02A0A1470008ADAA1 /* ViewModels */ = {

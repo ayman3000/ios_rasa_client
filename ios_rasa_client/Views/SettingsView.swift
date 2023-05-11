@@ -6,51 +6,54 @@
 //
 import SwiftUI
 struct SettingsView: View {
-//    @ObservedObject var rasaChatViewModel: RasaChatViewModel
-    @ObservedObject var viewModel: SettingsViewModel
-//    @Binding var presentationMode: PresentationMode
+    @Binding var isPresented: Bool
+    @ObservedObject var viewModel: RasaChatViewModel
+    @State private var socketioAddress: String = ""
+    @FocusState private var isFocused: Bool
 
-
-//    @State private var socketioAddress: String = ""
-//
-//    var body: some View {
-//        VStack {
-//            HStack {
-//                Text("Rasa url: ")
-////                TextField("SocketIO Address", text: $socketioAddress)
-////                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//
-//                TextField("SocketIO Address", text: $viewModel.socketioAddress)
-//                           .textFieldStyle(RoundedBorderTextFieldStyle())
-//
-//                .padding()
-//            }
-//
-////            HStack(alignment: .center) {
-////                Button("Save") {
-////                    rasaChatViewModel.socketioAddress = socketioAddress
-////                }
-////                .padding(.horizontal, 10)
-////            }
-//            .padding(.horizontal)
-//        }
-//        .padding(.horizontal,10)
-//        .onAppear {
-//            // Set the initial value of the socketioAddress
-////            socketioAddress = rasaChatViewModel.socketioAddress
-//        }
-//
-//    }
     
     var body: some View {
-           Form {
-               Section(header: Text("SocketIO Address")) {
-                   TextField("SocketIO Address", text: $viewModel.socketioAddress)
-                       .keyboardType(.URL)
-                       .autocapitalization(.none)
-               }
-           }
-           .navigationBarTitle("Settings", displayMode: .inline)
-     
-       }
+        NavigationView {
+            Form {
+                Section(header: Text("SocketIO Address")) {
+                    VStack {
+                        TextField("SocketIO Address", text: $socketioAddress)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.URL)
+                            .autocapitalization(.none)
+                            .padding()
+                            .focused($isFocused)
+                        
+                        Button(action: {
+                            viewModel.socketioAddress = socketioAddress
+                            isPresented = false
+                        }) {
+                            Text("Save")
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 10)
+                                .background(Color.blue)
+                                .cornerRadius(8)
+                                .font(.headline)
+                        }
+                    }
+                    .onAppear {
+                        socketioAddress = viewModel.socketioAddress
+                        isFocused = true
+                    }
+                }
+            }
+            .navigationBarTitle("Settings")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        isPresented = false
+                    }) {
+                        Image(systemName: "xmark")
+                    }
+                }
+            }
+        }
+    }
 }
+

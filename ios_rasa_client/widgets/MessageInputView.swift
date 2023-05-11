@@ -4,11 +4,8 @@ struct MessageInputView: View {
     // @Binding var recognizedText: String
     @Binding var inputText: String
     @ObservedObject var rasaChatViewModel: RasaChatViewModel
-//    @State private var isFocused = false
-    @FocusState private var isFocused: Bool
-
-    
     let onRecognizedText: (String) -> Void
+    @FocusState private var isFocused: Bool
 
     var body: some View {
         HStack {

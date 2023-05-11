@@ -13,6 +13,7 @@ class SettingsViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
 
     init() {
+        self.socketioAddress = "http://localhost:5005"
         loadSettings()
     }
 
@@ -21,14 +22,16 @@ class SettingsViewModel: ObservableObject {
         // ...
 
         // Set the initial value for socketioAddress
-        self.socketioAddress = "http://localhost:5005"
+       
 
         // Subscribe to the socketioAddress publisher and save changes to storage
         $socketioAddress
             .debounce(for: 0.5, scheduler: RunLoop.main)
-            .sink { [weak self] newValue in
+            .sink {
+                [weak self] newValue in
                 // Save the updated socketioAddress to storage
                 // ...
+                
 
                 // Print the updated socketioAddress to the console
                 print("Updated socketioAddress: \(newValue)")

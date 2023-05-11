@@ -27,15 +27,31 @@ struct ChatMessageView: View {
                     .cornerRadius(10)
                     
                 Image(systemName: "person.fill")
-                    .font(.system(size: 18))
-                    .foregroundColor(.green)
-                    .padding(.leading, 6)
+                    .resizable()
+                       .aspectRatio(contentMode: .fit)
+                       .frame(width: 20, height: 20)
+                       .foregroundColor(.green)
+                       .background(Color.white)
+                       .clipShape(Circle())
+                       .padding(6)
+                       .overlay(
+                           Circle()
+                               .stroke(Color.green, lineWidth: 2)
+                       )
             } else {
                 // Display the bot's message on the left side
                 Image(systemName: "bolt.fill")
-                    .font(.system(size: 18))
-                    .foregroundColor(.blue)
-                    .padding(.trailing, 6)
+                    .resizable()
+                       .aspectRatio(contentMode: .fit)
+                       .frame(width: 40, height: 40)
+                       .foregroundColor(.blue)
+                       .background(Color.white)
+                       .clipShape(Circle())
+                       .padding(2)
+//                       .overlay(
+//                           Circle()
+//                               .stroke(Color.green, lineWidth: 2)
+//                       )
 
                 VStack(alignment: .leading, spacing: 10) {
                     if let attributedString = message.text.htmlToAttributedString() {
