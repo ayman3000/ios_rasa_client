@@ -9,6 +9,7 @@ import Foundation
 import SocketIO
 import SwiftUI
 import AVFoundation
+import Combine
 
 // This class handles communication with a Rasa chatbot using SocketIO
 class RasaChatViewModel:  ObservableObject {
@@ -17,7 +18,7 @@ class RasaChatViewModel:  ObservableObject {
     @Published var isConnected = false
     @Published var isTTSEnabled: Bool = true
     @Published var socketioAddress: String = "http:/localhost:5005" // <-- declare the socketioAddress here
-
+    private var cancellables: Set<AnyCancellable> = []
 
     // Properties used to manage the SocketIO connection
     private var manager: SocketManager!
@@ -29,11 +30,28 @@ class RasaChatViewModel:  ObservableObject {
     init() {
         setupSocket()
         connect()
+        sendMessage(text: "hi", sender: .bot)
+        subscribeToSocketioAddress()
+    }
+    
+    func subscribeToSocketioAddress() {
+        $socketioAddress
+                    .sink { address in
+                        UserDefaults.standard.setValue(address, forKey: "socketioAddress")
+                    }
+                    .store(in: &cancellables)
+                
+                if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
+                    socketioAddress = savedAddress
+                
+            }
+        
+        
     }
 
     // Set up the SocketIO client
     func setupSocket() {
-        manager = SocketManager(socketURL: URL(string: "http://localhost:5005")!, config: [.log(false), .compress])
+        manager = SocketManager(socketURL: URL(string: socketioAddress)!, config: [.log(false), .compress])
         socket = manager.defaultSocket
     }
 
@@ -51,6 +69,7 @@ class RasaChatViewModel:  ObservableObject {
         // Handle "bot_uttered" events
         socket.on("bot_uttered") { [weak self] dataArray, _ in
             guard let self = self else {return}
+            guard !dataArray.isEmpty else {return}
             
             print("Received data: \(dataArray)")
             
@@ -91,10 +110,14 @@ class RasaChatViewModel:  ObservableObject {
     }
 
     // Send a message to the chatbot
-    func sendMessage(text: String) {
-        let message = ChatMessage(sender: .user, text: text, buttons: nil)
-        messages.append(message)
-
-        socket.emit("user_uttered", ["message": text])
+    func sendMessage(text: String, sender: Sender = .user,  buttonPayload: String? = nil, buttonTitle: String? = nil) {
+        if let payload = buttonPayload, let title = buttonTitle {
+            messages.append(ChatMessage(sender: sender, text: title, buttons: nil))
+            socket.emit("user_uttered", ["message": payload])
+        } else {
+            messages.append(ChatMessage(sender: sender, text: text, buttons: nil))
+            socket.emit("user_uttered", ["message": text])
+        }
     }
+
 }

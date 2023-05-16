@@ -6,23 +6,54 @@
 //
 import SwiftUI
 struct SettingsView: View {
-    @ObservedObject var rasaChatViewModel: RasaChatViewModel
+    @Binding var isPresented: Bool
+    @ObservedObject var viewModel: RasaChatViewModel
     @State private var socketioAddress: String = ""
+    @FocusState private var isFocused: Bool
 
+    
     var body: some View {
-        VStack {
-            TextField("SocketIO Address", text: $socketioAddress)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            Button("Save") {
-                rasaChatViewModel.socketioAddress = socketioAddress
+        NavigationView {
+            Form {
+                Section(header: Text("SocketIO Address")) {
+                    VStack {
+                        TextField("SocketIO Address", text: $socketioAddress)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.URL)
+                            .autocapitalization(.none)
+                            .padding()
+                            .focused($isFocused)
+                        
+                        Button(action: {
+                            viewModel.socketioAddress = socketioAddress
+                            isPresented = false
+                        }) {
+                            Text("Save")
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 10)
+                                .background(Color.blue)
+                                .cornerRadius(8)
+                                .font(.headline)
+                        }
+                    }
+                    .onAppear {
+                        socketioAddress = viewModel.socketioAddress
+                        isFocused = true
+                    }
+                }
             }
-            .padding()
-        }
-        .onAppear {
-            // Set the initial value of the socketioAddress
-            socketioAddress = rasaChatViewModel.socketioAddress
+            .navigationBarTitle("Settings")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        isPresented = false
+                    }) {
+                        Image(systemName: "xmark")
+                    }
+                }
+            }
         }
     }
 }
+

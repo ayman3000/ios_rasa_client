@@ -28,10 +28,10 @@ struct SpeechRecognitionButton: View {
                 }
             }) {
                 Image(systemName: speechRecognizer.isRecording ? "stop.fill" : "mic.fill")
-                    .font(.system(size: 10))
+                    .font(.system(size: 20))
                     .foregroundColor(speechRecognizer.isRecording ? .red : .primary)
-                    .padding()
-                    .background(Color.white)
+                    .padding(.horizontal, 5)
+//                    .background(Color.white)
                     .clipShape(Circle())
                     .shadow(radius: 10)
             }
