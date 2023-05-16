@@ -3,7 +3,7 @@ import SwiftUI
 struct MessageInputView: View {
     // @Binding var recognizedText: String
     @Binding var inputText: String
-    @ObservedObject var rasaChatViewModel: RasaChatViewModel
+    @StateObject var rasaChatViewModel: RasaChatViewModel
     let onRecognizedText: (String) -> Void
     @FocusState private var isFocused: Bool
 

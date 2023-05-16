@@ -7,7 +7,7 @@
 import SwiftUI
 struct SettingsView: View {
     @Binding var isPresented: Bool
-    @ObservedObject var viewModel: RasaChatViewModel
+    @StateObject var viewModel: RasaChatViewModel
     @State private var socketioAddress: String = ""
     @FocusState private var isFocused: Bool
 
