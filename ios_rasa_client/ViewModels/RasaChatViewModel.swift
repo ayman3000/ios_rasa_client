@@ -32,9 +32,9 @@ class RasaChatViewModel:  ObservableObject {
             socketioAddress = savedAddress
         }
         
-        setupSocket(address: socketioAddress)
-        connect()
-        sendMessage(text: "hi", sender: .bot)
+//        setupSocket(address: socketioAddress)
+//        connect()
+//        sendMessage(text: "hi", sender: .bot)
         subscribeToSocketioAddress()
     }
 
@@ -49,6 +49,7 @@ class RasaChatViewModel:  ObservableObject {
 
         if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
             socketioAddress = savedAddress
+            self.setupSocket(address: socketioAddress)
         }
     }
 
@@ -62,6 +63,7 @@ class RasaChatViewModel:  ObservableObject {
         }
         manager = SocketManager(socketURL: URL(string: address)!, config: [.log(false), .compress])
         socket = manager.defaultSocket
+        self.connect()
     }
 
 
