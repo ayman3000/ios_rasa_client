@@ -12,7 +12,7 @@ import SwiftUI
 struct ChatMessageView: View {
     let message: ChatMessage
     // The view model used to send messages when the button is tapped
-    @ObservedObject var viewModel: RasaChatViewModel
+    @StateObject var viewModel: RasaChatViewModel
     
     var body: some View {
         HStack {
@@ -27,31 +27,16 @@ struct ChatMessageView: View {
                     .cornerRadius(10)
                     
                 Image(systemName: "person.fill")
-                    .resizable()
-                       .aspectRatio(contentMode: .fit)
-                       .frame(width: 20, height: 20)
-                       .foregroundColor(.green)
-                       .background(Color.white)
-                       .clipShape(Circle())
-                       .padding(6)
-                       .overlay(
-                           Circle()
-                               .stroke(Color.green, lineWidth: 2)
-                       )
+                    .font(.system(size: 14))
+                    .foregroundColor(.green)
+                    .padding(.leading, 6)
+   
             } else {
                 // Display the bot's message on the left side
                 Image(systemName: "bolt.fill")
-                    .resizable()
-                       .aspectRatio(contentMode: .fit)
-                       .frame(width: 40, height: 40)
-                       .foregroundColor(.blue)
-                       .background(Color.white)
-                       .clipShape(Circle())
-                       .padding(2)
-//                       .overlay(
-//                           Circle()
-//                               .stroke(Color.green, lineWidth: 2)
-//                       )
+                    .font(.system(size: 18))
+                    .foregroundColor(.blue)
+                    .padding(.trailing, 6)
 
                 VStack(alignment: .leading, spacing: 10) {
                     if let attributedString = message.text.htmlToAttributedString() {
@@ -71,6 +56,7 @@ struct ChatMessageView: View {
                         } else {
                             // Display the text as a regular message
                             Text(message.text)
+                                .font(.system(size: 18))
                                 .padding(10)
                                 .background(Color.gray.opacity(0.7))
                                 .cornerRadius(10)
