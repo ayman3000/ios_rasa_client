@@ -17,7 +17,7 @@ class RasaChatViewModel:  ObservableObject {
     @Published var messages: [ChatMessage] = []
     @Published var isConnected = false
     @Published var isTTSEnabled: Bool = true
-    @Published var socketioAddress: String = "http:/localhost:5005" // <-- declare the socketioAddress here
+    @Published var socketioAddress: String = "http://172.20.10.7:5005" // <-- declare the socketioAddress here
     private var cancellables: Set<AnyCancellable> = []
 
     // Properties used to manage the SocketIO connection
@@ -28,66 +28,76 @@ class RasaChatViewModel:  ObservableObject {
     let speaker = Speaker()
     
     init() {
-        setupSocket()
+        if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
+            socketioAddress = savedAddress
+        }
+        
+        setupSocket(address: socketioAddress)
         connect()
         sendMessage(text: "hi", sender: .bot)
         subscribeToSocketioAddress()
     }
-    
+
+
     func subscribeToSocketioAddress() {
         $socketioAddress
-                    .sink { address in
-                        UserDefaults.standard.setValue(address, forKey: "socketioAddress")
-                    }
-                    .store(in: &cancellables)
-                
-                if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
-                    socketioAddress = savedAddress
-                
+            .sink { [weak self] address in
+                UserDefaults.standard.setValue(address, forKey: "socketioAddress")
+                self?.setupSocket(address: address)
             }
-        
-        
+            .store(in: &cancellables)
+
+        if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
+            socketioAddress = savedAddress
+        }
     }
 
+
     // Set up the SocketIO client
-    func setupSocket() {
-        manager = SocketManager(socketURL: URL(string: socketioAddress)!, config: [.log(false), .compress])
+    func setupSocket(address: String) {
+        if let socket = self.socket {
+            if socket.status == .connected {
+                socket.disconnect()
+            }
+        }
+        manager = SocketManager(socketURL: URL(string: address)!, config: [.log(false), .compress])
         socket = manager.defaultSocket
     }
+
 
     // Connect to the SocketIO server and handle connection and disconnection events
     func connect() {
         socket.on(clientEvent: .connect) { _, _ in
             self.isConnected = true
-            print("connected....")
+            print("Connected....")
         }
+
         socket.on(clientEvent: .disconnect) { _, _ in
             self.isConnected = false
-            print("disconnected....")
+            print("Disconnected....")
         }
-        
+
         // Handle "bot_uttered" events
         socket.on("bot_uttered") { [weak self] dataArray, _ in
-            guard let self = self else {return}
-            guard !dataArray.isEmpty else {return}
+            guard let self = self else { return }
+            guard !dataArray.isEmpty else { return }
             
             print("Received data: \(dataArray)")
             
             // Decode the RasaResponse from the received data
             do {
-                let data =  try JSONSerialization.data(withJSONObject: dataArray[0], options: [])
+                let data = try JSONSerialization.data(withJSONObject: dataArray[0], options: [])
                 let response = try JSONDecoder().decode(RasaResponse.self, from: data)
                 self.handleResponse(response, sender: .bot)
-                
             } catch {
-                print(" Error decodeing RasaResponse: \(error)")
+                print("Error decoding RasaResponse: \(error)")
             }
         }
 
         // Connect to the SocketIO server
         socket.connect()
     }
-    
+
     // Handle a bot response
     private func handleResponse(_ response: RasaResponse, sender: Sender ) {
         let text = response.text

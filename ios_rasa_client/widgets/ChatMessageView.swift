@@ -71,6 +71,7 @@ struct ChatMessageView: View {
                         } else {
                             // Display the text as a regular message
                             Text(message.text)
+                                .font(.system(size: 18))
                                 .padding(10)
                                 .background(Color.gray.opacity(0.7))
                                 .cornerRadius(10)
