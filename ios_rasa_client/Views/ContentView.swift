@@ -42,7 +42,7 @@ struct ContentView: View {
                 .padding()
 
                 // Set navigation bar title and add a speaker toggle button to the navigation bar
-                .navigationBarTitle("Rasa Chatbot",
+                .navigationBarTitle("aRasa Chatbot",
                                     displayMode: .inline)
                 .font(.title)
 
