@@ -10,6 +10,8 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
+The software and its derivatives shall not be used to create an app or product that directly competes with or imitates the functionality, branding, or name of the "aRasa" app, including but not limited to "aRasa iOS," "aRasa Android," and other related names. This restriction applies to any derivative works, modifications, or extensions of the software.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
