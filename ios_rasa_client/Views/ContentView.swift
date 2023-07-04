@@ -9,19 +9,23 @@ struct ContentView: View {
     @State var socketioAddress: String = "http://localhost:5005"
     @State private var settingsPresented = false
     var body: some View {
+       
 
         NavigationView {
+           
+                
             ZStack {
-                Color(red: 0.0, green: 0.1, blue: 0.0, opacity: 0.2)
+                Color(red: 0.0, green: 0.2, blue: 0.0, opacity: 0.2)
                     .ignoresSafeArea()
 
                 VStack {
+                    
                     // Show messages in a scrollable view
                     ScrollView {
                         ScrollViewReader { proxy in
                             // Loop through all messages and show each in a ChatMessageView
                             LazyVStack {
-                                ForEach(rasaChatViewModel.messages.dropFirst()) { message in
+                                ForEach(rasaChatViewModel.messages) { message in
                                     ChatMessageView(message: ChatMessage(sender: message.sender, text: message.text, buttons: message.buttons), viewModel: rasaChatViewModel)
                                 }
                                 .onChange(of: rasaChatViewModel.messages) { _ in
@@ -39,23 +43,32 @@ struct ContentView: View {
                     })
                 }
                 .foregroundColor(.white)
-                .padding()
+                .padding(.top,20)
 
                 // Set navigation bar title and add a speaker toggle button to the navigation bar
                 .navigationBarTitle("aRasa Chatbot",
                                     displayMode: .inline)
-                .font(.title)
+                .font(.headline)
+                
 
             }
+            
                                     .navigationBarItems(leading:
+                                                            HStack(spacing: 10){
                                         Button(action: {
                     rasaChatViewModel.isTTSEnabled.toggle()
-                }) {
-                    Image(systemName: rasaChatViewModel.isTTSEnabled ? "speaker.wave.3.fill" : "speaker.slash.fill")
-
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.white)
+                                    }) {
+                                        Image(systemName: rasaChatViewModel.isTTSEnabled ? "speaker.wave.3.fill" : "speaker.slash.fill")
+                                        
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                            .foregroundColor(.white)
+                                    }
+                    Image(systemName: rasaChatViewModel.isConnected ? "checkmark.circle.fill" : "xmark.circle.fill")
+                        
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                            .foregroundColor(rasaChatViewModel.isConnected ? .green : .red)
                 },
 
                 trailing: Button(action: {
@@ -63,12 +76,13 @@ struct ContentView: View {
                    }) {
                        Image(systemName: "gear")
                            .resizable()
-                           .frame(width: 20, height: 20)
+                           .frame(width: 30, height: 30)
                    }
                    .sheet(isPresented: $settingsPresented) {
                        SettingsView( isPresented: $settingsPresented, viewModel: rasaChatViewModel)
                    }
         )}
+
 
         .navigationViewStyle(StackNavigationViewStyle())
         .accentColor(.accentColor)
@@ -76,7 +90,11 @@ struct ContentView: View {
 //            settingsPresented = false
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
+        
+        
     }
+    
+    
 }
 let contentView = ContentView() // assigning to a variable
 

@@ -18,6 +18,8 @@ class RasaChatViewModel:  ObservableObject {
     @Published var isConnected = false
     @Published var isTTSEnabled: Bool = true
     @Published var socketioAddress: String = "http://172.20.10.7:5005" // <-- declare the socketioAddress here
+    @Published var errorMessage: String?
+    @Published var connectionFailed = false
     private var cancellables: Set<AnyCancellable> = []
 
     // Properties used to manage the SocketIO connection
@@ -60,6 +62,9 @@ class RasaChatViewModel:  ObservableObject {
             if socket.status == .connected {
                 socket.disconnect()
             }
+            if socket.status == .notConnected {
+                print("colud not connect to address \(address)")
+            }
         }
         manager = SocketManager(socketURL: URL(string: address)!, config: [.log(false), .compress])
         socket = manager.defaultSocket
@@ -77,6 +82,12 @@ class RasaChatViewModel:  ObservableObject {
         socket.on(clientEvent: .disconnect) { _, _ in
             self.isConnected = false
             print("Disconnected....")
+        }
+        socket.on(clientEvent:.error){  _, _ in
+            self.isConnected = false
+            self.errorMessage = "Error connecting to the server."
+            self.connectionFailed = true
+            print("Error connecting ....")
         }
 
         // Handle "bot_uttered" events
