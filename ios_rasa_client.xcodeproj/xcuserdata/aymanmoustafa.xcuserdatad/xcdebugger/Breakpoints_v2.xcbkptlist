@@ -343,38 +343,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "935680A0-BC1E-404C-BC11-2F1A3D3CFA4B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "subscribeToSocketioAddress()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1C21736A-D589-4060-A04A-C6DE2498370F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "init()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "4B5881F7-85EB-48C8-859B-2D21EA7A5BCC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -382,8 +350,8 @@
             filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "setupSocket(address:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,8 +366,8 @@
             filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "connect()"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +382,8 @@
             filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "connect()"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,8 +398,8 @@
             filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "setupSocket(address:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,8 +414,8 @@
             filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "connect()"
             landmarkType = "7">
             <Locations>
@@ -503,34 +471,34 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B36D28AB-938E-4820-A0C6-BD613CBBA5DC"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "setupSocket(address:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "B36D28AB-938E-4820-A0C6-BD613CBBA5DC - fd3ba59a5e061f82"
+                  uuid = "B36D28AB-938E-4820-A0C6-BD613CBBA5DC - c881492de2d7fb1c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ios_rasa_client.RasaChatViewModel.setupSocket(address: Swift.String) -&gt; ()"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.subscribeToRestAPIAddress() -&gt; ()"
                   moduleName = "ios_rasa_client"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "644">
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "832">
                </Location>
                <Location
-                  uuid = "B36D28AB-938E-4820-A0C6-BD613CBBA5DC - fd3ba59a5e061e40"
+                  uuid = "B36D28AB-938E-4820-A0C6-BD613CBBA5DC - fd3ba59a5e0665d6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -540,9 +508,24 @@
                   urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "644">
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "672">
+               </Location>
+               <Location
+                  uuid = "B36D28AB-938E-4820-A0C6-BD613CBBA5DC - fd3ba59a5e066594"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.setupSocket(address: Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "672">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -561,6 +544,417 @@
             endingLineNumber = "17"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DA11CAC7-5291-4FA5-8D12-103053C15424"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "sendRESTMessage(text:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DA11CAC7-5291-4FA5-8D12-103053C15424 - a94c07af2051bfc5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendRESTMessage(text: Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "664">
+               </Location>
+               <Location
+                  uuid = "DA11CAC7-5291-4FA5-8D12-103053C15424 - a94c07af2051bfc5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendRESTMessage(text: Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "464">
+               </Location>
+               <Location
+                  uuid = "DA11CAC7-5291-4FA5-8D12-103053C15424 - a94c07af2051bfc5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendRESTMessage(text: Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "560">
+               </Location>
+               <Location
+                  uuid = "DA11CAC7-5291-4FA5-8D12-103053C15424 - a94c07af2051bfc5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendRESTMessage(text: Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "2132">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6739D29C-016A-47DF-A56E-ED7C05FB1049"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "sendPayload(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6739D29C-016A-47DF-A56E-ED7C05FB1049 - dbd21c110917a38f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendPayload(Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "692">
+               </Location>
+               <Location
+                  uuid = "6739D29C-016A-47DF-A56E-ED7C05FB1049 - dbd21c110917a38f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendPayload(Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "47D90F0C-7790-4E2C-8F70-F371C558BC61"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "sendPayload(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "47D90F0C-7790-4E2C-8F70-F371C558BC61 - dbd21c110917a241"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendPayload(Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "708">
+               </Location>
+               <Location
+                  uuid = "47D90F0C-7790-4E2C-8F70-F371C558BC61 - dbd21c110917a241"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendPayload(Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "692">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3BCA3ADD-4BF8-4B5D-AC45-CBD41EAECB77"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "setupSocket(address:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3BCA3ADD-4BF8-4B5D-AC45-CBD41EAECB77 - fd3ba59a5e06657b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.setupSocket(address: Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "3BCA3ADD-4BF8-4B5D-AC45-CBD41EAECB77 - fd3ba59a5e06657b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.setupSocket(address: Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "360">
+               </Location>
+               <Location
+                  uuid = "3BCA3ADD-4BF8-4B5D-AC45-CBD41EAECB77 - fd3ba59a5e066539"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.setupSocket(address: Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "3BCA3ADD-4BF8-4B5D-AC45-CBD41EAECB77 - fd3ba59a5e066539"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.setupSocket(address: Swift.String) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "360">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EDB6B631-FB38-47BC-B2C3-9F951734147F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "sendRESTMessage(text:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "013C38D6-B3EE-4197-B650-F18FE4BB225F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "sendRESTMessage(text:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE64A44C-86EA-4660-9AB1-6D09EC675CBE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "subscribeToSocketioAddress()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E686F572-B71A-4536-9A77-1ED2BA97B49A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "subscribeToSocketioAddress()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "50FD75B1-DC3F-4727-816D-A05EADAC7120"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "connect()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "975E9945-A67F-4D40-A998-0A38F9EB0C5D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "sendMessage(text:sender:buttonPayload:buttonTitle:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "975E9945-A67F-4D40-A998-0A38F9EB0C5D - b646c70338c12033"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendMessage(text: Swift.String, sender: ios_rasa_client.Sender, buttonPayload: Swift.Optional&lt;Swift.String&gt;, buttonTitle: Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "232">
+               </Location>
+               <Location
+                  uuid = "975E9945-A67F-4D40-A998-0A38F9EB0C5D - b646c70338c12033"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendMessage(text: Swift.String, sender: ios_rasa_client.Sender, buttonPayload: Swift.Optional&lt;Swift.String&gt;, buttonTitle: Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  uuid = "975E9945-A67F-4D40-A998-0A38F9EB0C5D - b646c70338c12033"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_rasa_client.RasaChatViewModel.sendMessage(text: Swift.String, sender: ios_rasa_client.Sender, buttonPayload: Swift.Optional&lt;Swift.String&gt;, buttonTitle: Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
+                  moduleName = "ios_rasa_client"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aymanmoustafa/projects/mmai/ios_rasa_client/ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "392">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8479B758-BE46-4060-A8EE-24C8D0A3CBFE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios_rasa_client/ViewModels/RasaChatViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "sendMessage(text:sender:buttonPayload:buttonTitle:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

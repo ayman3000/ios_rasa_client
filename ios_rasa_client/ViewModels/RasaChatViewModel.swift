@@ -11,6 +11,10 @@ import SwiftUI
 import AVFoundation
 import Combine
 
+enum InterfaceType: String, Codable {
+    case socketIO = "SocketIO"
+    case restAPI = "REST API"
+}
 // This class handles communication with a Rasa chatbot using SocketIO
 class RasaChatViewModel:  ObservableObject {
     // Published properties that indicate the chat messages and the connection status
@@ -18,8 +22,11 @@ class RasaChatViewModel:  ObservableObject {
     @Published var isConnected = false
     @Published var isTTSEnabled: Bool = true
     @Published var socketioAddress: String = "http://172.20.10.7:5005" // <-- declare the socketioAddress here
+    @Published var restAPIAddress: String = "http://172.20.10.7:5005/webhooks/rest/webhook" // <-- declare the restAPIAddress here
+
     @Published var errorMessage: String?
     @Published var connectionFailed = false
+    
     private var cancellables: Set<AnyCancellable> = []
 
     // Properties used to manage the SocketIO connection
@@ -28,32 +35,74 @@ class RasaChatViewModel:  ObservableObject {
     
     // An instance of the `Speaker` class for text-to-speech functionality
     let speaker = Speaker()
+    // REST API session
+    private let restAPISession = URLSession(configuration: .default)
+    
+    @Published var interfaceType: InterfaceType = .socketIO {
+          didSet {
+              switch interfaceType {
+              case .socketIO:
+                  subscribeToSocketioAddress()
+              case .restAPI:
+                  subscribeToRestAPIAddress()
+              }
+              UserDefaults.standard.setValue(interfaceType.rawValue, forKey: "interfaceType")
+
+          }
+      }
     
     init() {
-        if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
-            socketioAddress = savedAddress
+           if let savedInterfaceType = UserDefaults.standard.string(forKey: "interfaceType") {
+               interfaceType = InterfaceType(rawValue: savedInterfaceType) ?? .socketIO
+           }
+           if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress"), interfaceType == .socketIO {
+               socketioAddress = savedAddress
+               subscribeToSocketioAddress()
+           }
+           if let savedRestAPIAddress = UserDefaults.standard.string(forKey: "restAPIAddress"), interfaceType == .restAPI {
+               restAPIAddress = savedRestAPIAddress
+               subscribeToRestAPIAddress()
+           }
+       }
+    // Subscribe methods
+        func subscribeToSocketioAddress() {
+            if interfaceType == .socketIO {
+                $socketioAddress
+                    .sink { [weak self] address in
+                        UserDefaults.standard.setValue(address, forKey: "socketioAddress")
+                        self?.setupSocket(address: address)
+                    }
+                    .store(in: &cancellables)
+
+                if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
+                    socketioAddress = savedAddress
+                    self.setupSocket(address: socketioAddress)
+                }
+            }
         }
         
-//        setupSocket(address: socketioAddress)
-//        connect()
-//        sendMessage(text: "hi", sender: .bot)
-        subscribeToSocketioAddress()
-    }
+        func subscribeToRestAPIAddress() {
+            if interfaceType == .restAPI {
+                   $restAPIAddress
+                       .sink { [weak self] address in
+                           UserDefaults.standard.setValue(address, forKey: "restAPIAddress")
+                           // Disconnect from the Socket.IO server
+                           if let socket = self?.socket {
+                               socket.disconnect()
+                           }
 
+                       }
+                       .store(in: &cancellables)
 
-    func subscribeToSocketioAddress() {
-        $socketioAddress
-            .sink { [weak self] address in
-                UserDefaults.standard.setValue(address, forKey: "socketioAddress")
-                self?.setupSocket(address: address)
-            }
-            .store(in: &cancellables)
-
-        if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
-            socketioAddress = savedAddress
-            self.setupSocket(address: socketioAddress)
+                   if let savedRestAPIAddress = UserDefaults.standard.string(forKey: "restAPIAddress") {
+                       restAPIAddress = savedRestAPIAddress
+                       // Disconnect from the Socket.IO server
+                       if let socket = self.socket {
+                           socket.disconnect()
+                       }
+                   }
+               }
         }
-    }
 
 
     // Set up the SocketIO client
@@ -66,7 +115,11 @@ class RasaChatViewModel:  ObservableObject {
                 print("colud not connect to address \(address)")
             }
         }
-        manager = SocketManager(socketURL: URL(string: address)!, config: [.log(false), .compress])
+        guard let url = URL(string: address) else {
+            print("Invalid address: \(address)")
+            return
+        }
+        manager = SocketManager(socketURL: url, config: [.log(false), .compress])
         socket = manager.defaultSocket
         self.connect()
     }
@@ -136,11 +189,52 @@ class RasaChatViewModel:  ObservableObject {
     func sendMessage(text: String, sender: Sender = .user,  buttonPayload: String? = nil, buttonTitle: String? = nil) {
         if let payload = buttonPayload, let title = buttonTitle {
             messages.append(ChatMessage(sender: sender, text: title, buttons: nil))
-            socket.emit("user_uttered", ["message": payload])
+            sendPayload(payload)
         } else {
             messages.append(ChatMessage(sender: sender, text: text, buttons: nil))
-            socket.emit("user_uttered", ["message": text])
+            sendPayload(text)
         }
     }
+
+    private func sendPayload(_ payload: String) {
+        switch interfaceType {
+        case .socketIO:
+            socket.emit("user_uttered", ["message": payload])
+        case .restAPI:
+            sendRESTMessage(text: payload)
+        }
+    }
+    
+    // sendRESTMessage
+    func sendRESTMessage(text: String) {
+        guard let url = URL(string: restAPIAddress) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let messageData = ["sender": "user", "message": text]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: messageData, options: [])
+
+        let task = restAPISession.dataTask(with: request) { [weak self] data, response, error in
+            guard let this = self, let data = data else { return }
+            do {
+                let responseObject = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
+                guard let firstResponse = responseObject?.first else {
+                    print("Failed to parse JSON response: Empty response.")
+                    return
+                }
+                
+                let data = try JSONSerialization.data(withJSONObject: firstResponse, options: [])
+                let response = try JSONDecoder().decode(RasaResponse.self, from: data)
+                DispatchQueue.main.async {
+                    self?.handleResponse(response, sender: .bot)
+                }
+                
+            } catch {
+                print("Failed to parse JSON response: \(error)")
+            }
+        }
+        task.resume()
+    }
+
 
 }
