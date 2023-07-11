@@ -64,11 +64,13 @@ struct ContentView: View {
                                             .frame(width: 30, height: 30)
                                             .foregroundColor(.white)
                                     }
-                    Image(systemName: rasaChatViewModel.isConnected ? "checkmark.circle.fill" : "xmark.circle.fill")
-                        
-                                            .resizable()
-                                            .frame(width: 30, height: 30)
-                                            .foregroundColor(rasaChatViewModel.isConnected ? .green : .red)
+                                        if rasaChatViewModel.interfaceType == .socketIO {
+                                            Image(systemName: rasaChatViewModel.isConnected  ? "checkmark.circle.fill" : "xmark.circle.fill")
+                                            
+                                                .resizable()
+                                                .frame(width: 30, height: 30)
+                                                .foregroundColor(rasaChatViewModel.isConnected ? .green : .red)
+                                        }
                 },
 
                 trailing: Button(action: {
@@ -90,6 +92,16 @@ struct ContentView: View {
 //            settingsPresented = false
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
+        .onAppear {
+//            NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { _ in
+//                    self.rasaChatViewModel.disconnectSocket()
+//                }
+
+                NotificationCenter.default.addObserver(forName: UIApplication.willTerminateNotification, object: nil, queue: .main) { _ in
+                    self.rasaChatViewModel.disconnectSocket()
+                }
+            
+        }
         
         
     }
