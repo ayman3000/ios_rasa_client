@@ -17,90 +17,87 @@ enum InterfaceType: String, Codable {
 }
 // This class handles communication with a Rasa chatbot using SocketIO
 class RasaChatViewModel:  ObservableObject {
-    // Published properties that indicate the chat messages and the connection status
-    @Published var messages: [ChatMessage] = []
-    @Published var isConnected = false
-    @Published var isTTSEnabled: Bool = true
-    @Published var socketioAddress: String = "http://172.20.10.7:5005" // <-- declare the socketioAddress here
-    @Published var restAPIAddress: String = "http://172.20.10.7:5005/webhooks/rest/webhook" // <-- declare the restAPIAddress here
 
-    @Published var errorMessage: String?
-    @Published var connectionFailed = false
-    
-    private var cancellables: Set<AnyCancellable> = []
+// Published properties that indicate the chat messages and the connection status
+// `@Published` is a property wrapper that provides a way to configure properties of objects that can be published for use in SwiftUI.
 
-    // Properties used to manage the SocketIO connection
-    private var manager: SocketManager!
-    private var socket: SocketIOClient!
-    
-    // An instance of the `Speaker` class for text-to-speech functionality
-    let speaker = Speaker()
-    // REST API session
-    private let restAPISession = URLSession(configuration: .default)
-    
-    @Published var interfaceType: InterfaceType = .socketIO {
-          didSet {
-              switch interfaceType {
-              case .socketIO:
-                  subscribeToSocketioAddress()
-              case .restAPI:
-                  subscribeToRestAPIAddress()
-              }
-              UserDefaults.standard.setValue(interfaceType.rawValue, forKey: "interfaceType")
+@Published var messages: [ChatMessage] = [] // The array of chat messages.
+@Published var isConnected = false // Indicates whether the client is currently connected to the server.
+@Published var isTTSEnabled: Bool = true // Indicates whether the text-to-speech functionality is enabled.
+@Published var socketioAddress: String = "http://172.20.10.7:5005" // The address of the Socket.IO server.
+@Published var restAPIAddress: String = "http://172.20.10.7:5005/webhooks/rest/webhook" // The address of the REST API server.
+@Published var errorMessage: String? // Contains an error message if any errors occur.
+@Published var connectionFailed = false // Indicates whether the connection attempt to the server has failed.
+  
+private var cancellables: Set<AnyCancellable> = [] // Used for Combine, to keep track of any network requests or subscriptions.
 
-          }
-      }
+// Properties used to manage the SocketIO connection
+private var manager: SocketManager! // The Socket.IO manager instance.
+private var socket: SocketIOClient! // The Socket.IO client instance.
+  
+// An instance of the `Speaker` class for text-to-speech functionality
+let speaker = Speaker()
+
+// REST API session
+private let restAPISession = URLSession(configuration: .default)
+
+// The selected interface type
+@Published var interfaceType: InterfaceType = .restAPI {
+    didSet {
+        switch interfaceType {
+        case .socketIO:
+            subscribeToSocketioAddress() // Sets up a Socket.IO connection when the interface type is set to Socket.IO.
+        case .restAPI:
+            subscribeToRestAPIAddress() // Sets up a REST API connection when the interface type is set to REST API.
+        }
+        UserDefaults.standard.setValue(interfaceType.rawValue, forKey: "interfaceType")
+    }
+}
+
     
     init() {
-           if let savedInterfaceType = UserDefaults.standard.string(forKey: "interfaceType") {
-               interfaceType = InterfaceType(rawValue: savedInterfaceType) ?? .socketIO
-           }
-           if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress"), interfaceType == .socketIO {
+     
+           if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress"){
                socketioAddress = savedAddress
-               subscribeToSocketioAddress()
+               
            }
-           if let savedRestAPIAddress = UserDefaults.standard.string(forKey: "restAPIAddress"), interfaceType == .restAPI {
+           if let savedRestAPIAddress = UserDefaults.standard.string(forKey: "restAPIAddress") {
                restAPIAddress = savedRestAPIAddress
-               subscribeToRestAPIAddress()
+               
            }
+        if let savedInterfaceType = UserDefaults.standard.string(forKey: "interfaceType") {
+            interfaceType = InterfaceType(rawValue: savedInterfaceType) ?? .restAPI
+        }
+        $restAPIAddress
+            .sink { address in
+                UserDefaults.standard.setValue(address, forKey: "restAPIAddress")
+            }
+            .store(in: &cancellables)
+        $socketioAddress
+            .sink {  address in
+                UserDefaults.standard.setValue(address, forKey: "socketioAddress")
+                
+            }
+            .store(in: &cancellables)
        }
     // Subscribe methods
         func subscribeToSocketioAddress() {
-            if interfaceType == .socketIO {
-                $socketioAddress
-                    .sink { [weak self] address in
-                        UserDefaults.standard.setValue(address, forKey: "socketioAddress")
-                        self?.setupSocket(address: address)
-                    }
-                    .store(in: &cancellables)
 
-                if let savedAddress = UserDefaults.standard.string(forKey: "socketioAddress") {
-                    socketioAddress = savedAddress
-                    self.setupSocket(address: socketioAddress)
-                }
+            if interfaceType == .socketIO {
+                self.setupSocket(address: socketioAddress)
+      
+
+     
             }
         }
         
         func subscribeToRestAPIAddress() {
+            
             if interfaceType == .restAPI {
-                   $restAPIAddress
-                       .sink { [weak self] address in
-                           UserDefaults.standard.setValue(address, forKey: "restAPIAddress")
-                           // Disconnect from the Socket.IO server
-                           if let socket = self?.socket {
-                               socket.disconnect()
-                           }
-
-                       }
-                       .store(in: &cancellables)
-
-                   if let savedRestAPIAddress = UserDefaults.standard.string(forKey: "restAPIAddress") {
-                       restAPIAddress = savedRestAPIAddress
-                       // Disconnect from the Socket.IO server
-                       if let socket = self.socket {
-                           socket.disconnect()
-                       }
-                   }
+                if let socket = self.socket {
+                    socket.disconnect()
+                }
+            
                }
         }
 
@@ -234,6 +231,10 @@ class RasaChatViewModel:  ObservableObject {
             }
         }
         task.resume()
+    }
+    
+    func disconnectSocket() {
+        self.socket?.disconnect()
     }
 
 

@@ -10,12 +10,13 @@ struct SettingsView: View {
     @StateObject var viewModel: RasaChatViewModel
     @State private var socketIOAddress: String = ""
     @State private var restAPIAddress: String = ""
+    @State private var interfaceType: InterfaceType = .restAPI
 
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Interface Type")) {
-                    Picker("Interface Type", selection: $viewModel.interfaceType) {
+                    Picker("Interface Type", selection: $interfaceType) {
                         Text("SocketIO").tag(InterfaceType.socketIO)
                         Text("REST API").tag(InterfaceType.restAPI)
                     }
@@ -23,7 +24,7 @@ struct SettingsView: View {
                     .padding()
                 }
                 
-                if viewModel.interfaceType == .socketIO {
+                if interfaceType == .socketIO {
                     Section(header: Text("SocketIO Address")) {
                         TextField("SocketIO Address", text: $socketIOAddress)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -45,6 +46,7 @@ struct SettingsView: View {
                     Button(action: {
                         viewModel.socketioAddress = socketIOAddress
                         viewModel.restAPIAddress = restAPIAddress
+                        viewModel.interfaceType = interfaceType
                         isPresented = false
                     }) {
                         Text("Save")
@@ -72,6 +74,7 @@ struct SettingsView: View {
         .onAppear {
             socketIOAddress = viewModel.socketioAddress
             restAPIAddress = viewModel.restAPIAddress
+            interfaceType = viewModel.interfaceType
         }
     }
 }

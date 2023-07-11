@@ -92,6 +92,16 @@ struct ContentView: View {
 //            settingsPresented = false
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
+        .onAppear {
+//            NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { _ in
+//                    self.rasaChatViewModel.disconnectSocket()
+//                }
+
+                NotificationCenter.default.addObserver(forName: UIApplication.willTerminateNotification, object: nil, queue: .main) { _ in
+                    self.rasaChatViewModel.disconnectSocket()
+                }
+            
+        }
         
         
     }
